@@ -1,15 +1,15 @@
 {
   "name": "@ebay/jquery-active-descendant",
   "description": "jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "scripts": {
-      "start": "karma start --autoWatch true --singleRun false",
-      "test": "karma start",
-      "prepublish": "npm run build",
-      "lint": "jshint jquery.activedescendant.js > jshint.txt",
-      "minify": "jsmin -o jquery.activedescendant.min.js jquery.activedescendant.js",
-      "clean": "rimraf test_reports *.min.js jshint.txt",
-      "build": "npm run clean && npm run lint && npm test && npm run minify"
+    "start": "karma start --autoWatch true --singleRun false",
+    "test": "karma start",
+    "prepublish": "npm run build",
+    "lint": "jshint jquery.activedescendant.js > jshint.txt",
+    "minify": "jsmin -o jquery.activedescendant.min.js jquery.activedescendant.js",
+    "clean": "rimraf test_reports *.min.js jshint.txt",
+    "build": "npm run clean && npm run lint && npm test && npm run minify"
   },
   "author": "Ian McBurnie <ianmcburnie@hotmail.com>",
   "homepage": "https://github.com/ianmcburnie/jquery-active-descendant",
