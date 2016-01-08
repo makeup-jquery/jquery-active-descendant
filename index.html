@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Demo: @ebay/jquery-active-descendant</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style>
+            div div > * {
+                margin-left: 2em;
+            }
+            #demo_input-activedescendent {
+                background-color: black;
+                color: white;
+            }
+            #demo_list {
+                list-style-type: none;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div role="main">
+            <h1>Demo: @ebay/jquery-active-descendant</h1>
+            <p>With focus on the input, use up and down arrows to change the input's active descendant inside list</p>
+            <input id="demo_input" type="text" aria-label="active descendant demo">
+            <ul id="demo_list">
+                <li>Item 1</li>
+                <li>Item 2</li>
+                <li>Item 3</li>
+            </ul>
+        </div>
+        <script src="node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="node_modules/@ebay/jquery-next-id/jquery.nextid.js"></script>
+        <script src="node_modules/@ebay/jquery-common-keys/jquery.commonkeys.js"></script>
+        <script src="jquery.activedescendant.js"></script>
+        <script>
+            $(function() {
+                $("#demo_input").activeDescendant($('#demo_list > li'));
+
+                $("#demo_input").on('change.activeDescendant', function(e) {
+                    console.log('change.activeDescendant', e);
+                });
+
+                $("#demo_input").on('change', function(e) {
+                    console.log('change', e);
+                });
+            });
+        </script>
+    </body>
+</html>
