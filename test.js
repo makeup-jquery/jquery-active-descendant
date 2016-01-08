@@ -19,13 +19,13 @@ describe("jquery.activedescendant.js", function() {
 
     it("should trigger change.activeDescendant event on downarrow.commonKeyDown", function(done) {
         $widget.activeDescendant($descendants);
-        $widget.on('change.activeDescendant', done);
+        $widget.on('activeDescendantChange', done);
         $widget.trigger('downarrow.commonKeyDown');
     });
 
     it("should trigger change.activeDescendant event on uparrow.commonKeyDown", function(done) {
         $widget.activeDescendant($descendants);
-        $widget.on('change.activeDescendant', done);
+        $widget.on('activeDescendantChange', done);
         $widget.trigger('uparrow.commonKeyDown');
     });
 

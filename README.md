@@ -5,7 +5,7 @@
     <a href='https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master'><img src='https://coveralls.io/repos/ianmcburnie/jquery-active-descendant/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
 </p>
 
-jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
+jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation.
 
 ```js
 $(input).activeDescendant($collection);
@@ -20,7 +20,7 @@ Please use the tilde range specifier in your package.json to pin to a fixed majo
 ## Install
 
 ```js
-npm install @ebay/jquery-active-descendant --save
+npm install @ebay/jquery-active-descendant
 ```
 
 ## Example
@@ -36,6 +36,18 @@ npm install @ebay/jquery-active-descendant --save
 
 ```js
 $('#autocomplete').activeDescendant($('#list li'));
+```
+
+To listen for active descendant change:
+
+```js
+$('#autocomplete').on('activeDescendantChange', function(e, newActiveDescendant) {});
+```
+
+To update the active descendant collection:
+
+```js
+$('#autocomplete').trigger('updateActiveDescendantCollection', [$newCollection]);
 ```
 
 ## Development

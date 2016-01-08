@@ -7,7 +7,7 @@
             div div > * {
                 margin-left: 2em;
             }
-            #demo_input-activedescendent {
+            #demo_input-activedescendant {
                 background-color: black;
                 color: white;
             }
@@ -36,12 +36,8 @@
             $(function() {
                 $("#demo_input").activeDescendant($('#demo_list > li'));
 
-                $("#demo_input").on('change.activeDescendant', function(e) {
-                    console.log('change.activeDescendant', e);
-                });
-
-                $("#demo_input").on('change', function(e) {
-                    console.log('change', e);
+                $("#demo_input").on('activeDescendantChange', function(e, activeDescendant) {
+                    console.log('change.activeDescendant', e, activeDescendant);
                 });
             });
         </script>

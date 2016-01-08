@@ -1,12 +1,12 @@
 /**
 * @name jquery-active-descendant
 * @function $.fn.activeDescendant
-* @version 0.2.2
+* @version 0.3.0
 * @author Ian McBurnie <imancburnie@hotmail.com>
 * @desc jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
 * @summary http://www.w3.org/TR/wai-aria-practices/#kbd_general_within
-* @fires 'change.activeDescendant' event when activedescendant changes
-* @listens Listens to 'init.activeDescendant' to receive new descendant collection
+* @fires 'activeDescendantChange' event when activedescendant changes
+* @listens Listens to 'updateActiveDescendantCollection' to receive new descendant items
 * @requires @ebay/jquery-next-id
 * @requires @ebay/jquery-common-keys
 */
@@ -25,10 +25,10 @@
             $this.commonKeys();
 
             id = $this.prop('id');
-            activeDescendantId = $this.prop('id') + '-activedescendent';
+            activeDescendantId = $this.prop('id') + '-activedescendant';
             $this.attr('aria-activedescendant', activeDescendantId);
 
-            $this.on('init.activeDescendant', function(e, collection) {
+            $this.on('updateActiveDescendantCollection', function(e, collection) {
                 $descendants = $(collection);
                 $descendants.each(function(itemIdx) {
                     // store index position in element's dataset
@@ -56,7 +56,7 @@
                     $newActiveDescendant.prop('id', activeDescendantId);
                 }
 
-                $this.trigger('change.activeDescendant', $newActiveDescendant);
+                $this.trigger('activeDescendantChange', $newActiveDescendant);
             });
 
             $this.on('uparrow.commonKeyDown', function onUpArrowKeyDown(e) {
@@ -79,11 +79,11 @@
                     $newActiveDescendant.prop('id', activeDescendantId);
                 }
 
-                $this.trigger('change.activeDescendant', $newActiveDescendant);
+                $this.trigger('activeDescendantChange', $newActiveDescendant);
             });
 
             if (collection) {
-                $this.trigger('init.activeDescendant', [collection]);
+                $this.trigger('updateActiveDescendantCollection', [collection]);
             }
         });
     };
