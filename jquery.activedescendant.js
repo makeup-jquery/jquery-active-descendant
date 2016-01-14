@@ -1,7 +1,7 @@
 /**
 * @name jquery-active-descendant
 * @function $.fn.activeDescendant
-* @version 0.3.0
+* @version 0.3.1
 * @author Ian McBurnie <imancburnie@hotmail.com>
 * @desc jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
 * @summary http://www.w3.org/TR/wai-aria-practices/#kbd_general_within
