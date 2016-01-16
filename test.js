@@ -17,16 +17,16 @@ describe("jquery.activedescendant.js", function() {
         $descendants = $widget.find('li');
     });
 
-    it("should trigger change.activeDescendant event on downarrow.commonKeyDown", function(done) {
+    it("should trigger change.activeDescendant event on downArrowKeyDown", function(done) {
         $widget.activeDescendant($descendants);
         $widget.on('activeDescendantChange', done);
-        $widget.trigger('downarrow.commonKeyDown');
+        $widget.trigger('downArrowKeyDown');
     });
 
-    it("should trigger change.activeDescendant event on uparrow.commonKeyDown", function(done) {
+    it("should trigger change.activeDescendant event on upArrowKeyDown", function(done) {
         $widget.activeDescendant($descendants);
         $widget.on('activeDescendantChange', done);
-        $widget.trigger('uparrow.commonKeyDown');
+        $widget.trigger('upArrowKeyDown');
     });
 
     it("should have correct activedescendant data", function() {

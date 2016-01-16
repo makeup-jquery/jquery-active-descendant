@@ -44,11 +44,11 @@
     "phantomjs": "^1.9.18",
     "rimraf": "^2.4.4",
     "@ebay/jquery-next-id": "~0.0.0",
-    "@ebay/jquery-common-keys": "~0.3.0"
+    "@ebay/jquery-common-keys": "~0.4.0"
   },
   "peerDependencies": {
     "jquery": ">=1.11 < 3",
     "@ebay/jquery-next-id": "~0.0.0",
-    "@ebay/jquery-common-keys": "~0.3.0"
+    "@ebay/jquery-common-keys": "~0.4.0"
   }
 }
