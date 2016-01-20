@@ -15,8 +15,6 @@ $(input).activeDescendant($collection);
 
 This plugin is still in an experimental state, until it reaches v1.0.0 you must consider all minor releases as breaking changes. Patch releases may introduce new features, but will be backwards compatible.
 
-Please use the tilde range specifier in your package.json to pin to a fixed major and minor version.
-
 ## Install
 
 ```js
@@ -49,6 +47,17 @@ To update the active descendant collection:
 ```js
 $('#autocomplete').trigger('updateActiveDescendantCollection', [$newCollection]);
 ```
+
+## Events
+
+* `activeDescendantChange` - when active descendant has changed
+* `updateActiveDescendantCollection` - update the active descendant collection
+
+## Dependencies
+
+* [jquery](https://jquery.com/)
+* [@ebay/jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
+* [@ebay/jquery-common-keydown](https://github.com/ianmcburnie/jquery-common-keydown)
 
 ## Development
 

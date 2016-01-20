@@ -1,14 +1,14 @@
 /**
 * @name jquery-active-descendant
 * @function $.fn.activeDescendant
-* @version 0.4.0
+* @version 0.5.0
 * @author Ian McBurnie <imancburnie@hotmail.com>
 * @desc jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
 * @summary http://www.w3.org/TR/wai-aria-practices/#kbd_general_within
 * @fires 'activeDescendantChange' event when activedescendant changes
 * @listens Listens to 'updateActiveDescendantCollection' to receive new descendant items
 * @requires @ebay/jquery-next-id
-* @requires @ebay/jquery-common-keys
+* @requires @ebay/jquery-common-keydown
 */
 (function ($, window, document, undefined) {
 
@@ -22,7 +22,7 @@
                 id;
 
             $this.nextId();
-            $this.commonKeys();
+            $this.commonKeyDown();
 
             id = $this.prop('id');
             activeDescendantId = $this.prop('id') + '-activedescendant';
