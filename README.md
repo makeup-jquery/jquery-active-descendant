@@ -5,7 +5,7 @@
     <a href='https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master'><img src='https://coveralls.io/repos/ianmcburnie/jquery-active-descendant/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
 </p>
 
-jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation.
+jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour).
 
 ```js
 $(input).activeDescendant($collection);
@@ -23,30 +23,71 @@ npm install @ebay/jquery-active-descendant
 
 ## Example
 
+Input HTML:
+
 ```html
-<input id="autocomplete" />
-<ul id="list">
+<input id="input" />
+<ul id="input-suggestions">
     <li>A</li>
     <li>B</li>
     <li>C</li>
 </ul>
 ```
 
+Execute plugin:
+
 ```js
-$('#autocomplete').activeDescendant($('#list li'));
+$('#input').activeDescendant($('#input-suggestions li'));
+```
+
+Output HTML:
+
+```html
+<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
+<ul id="input-suggestions">
+    <li>A</li>
+    <li>B</li>
+    <li>C</li>
+</ul>
+```
+
+First down arrow key produces:
+
+```html
+<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
+<ul id="input-suggestions">
+    <li id="input-suggestions-activedescendant">A</li>
+    <li>B</li>
+    <li>C</li>
+</ul>
+```
+
+Next down arrow key produces:
+
+```html
+<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
+<ul id="input-suggestions">
+    <li>A</li>
+    <li id="input-suggestions-activedescendant">B</li>
+    <li>C</li>
+</ul>
 ```
 
 To listen for active descendant change:
 
 ```js
-$('#autocomplete').on('activeDescendantChange', function(e, newActiveDescendant) {});
+$('#input').on('activeDescendantChange', function(e, newActiveDescendant) {});
 ```
 
 To update the active descendant collection:
 
 ```js
-$('#autocomplete').trigger('updateActiveDescendantCollection', [$newCollection]);
+$('#input').trigger('updateActiveDescendantCollection', [$newCollection]);
 ```
+
+## Params
+
+* `collection` - the collection of descendants (not always DOM siblings!)
 
 ## Events
 

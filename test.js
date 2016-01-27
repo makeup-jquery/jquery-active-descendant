@@ -29,6 +29,34 @@ describe("jquery.activedescendant.js", function() {
         $widget.trigger('upArrowKeyDown');
     });
 
+    it("should trigger activeDescendantChange event on downArrowKeyDown with existing first activeDescendant", function(done) {
+        $descendants.first().prop('id', 'widget-activedescendant');
+        $widget.activeDescendant($descendants);
+        $widget.on('activeDescendantChange', done);
+        $widget.trigger('downArrowKeyDown');
+    });
+
+    it("should trigger activeDescendantChange event on downArrowKeyDown with existing last activeDescendant", function(done) {
+        $descendants.last().prop('id', 'widget-activedescendant');
+        $widget.activeDescendant($descendants);
+        $widget.on('activeDescendantChange', done);
+        $widget.trigger('downArrowKeyDown');
+    });
+
+    it("should trigger activeDescendantChange event on upArrowKeyDown with existing first activeDescendant", function(done) {
+        $descendants.first().prop('id', 'widget-activedescendant');
+        $widget.activeDescendant($descendants);
+        $widget.on('activeDescendantChange', done);
+        $widget.trigger('upArrowKeyDown');
+    });
+
+    it("should trigger activeDescendantChange event on upArrowKeyDown with existing last activeDescendant", function(done) {
+        $descendants.last().prop('id', 'widget-activedescendant');
+        $widget.activeDescendant($descendants);
+        $widget.on('activeDescendantChange', done);
+        $widget.trigger('upArrowKeyDown');
+    });
+
     it("should have correct activedescendant data", function() {
         $widget.activeDescendant($descendants);
         expect($descendants.first().data().widget.activedescendant).toBe(0);
