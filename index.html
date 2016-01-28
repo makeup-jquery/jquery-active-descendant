@@ -7,11 +7,12 @@
             div div > * {
                 margin-left: 2em;
             }
-            #demo_input-activedescendant {
+            #combobox_list li.activedescendant,
+            #combobox_list li[id*=activedescendant] {
                 background-color: black;
                 color: white;
             }
-            #demo_list {
+            #combobox_list {
                 list-style-type: none;
                 padding: 0;
             }
@@ -20,12 +21,12 @@
     <body>
         <div role="main">
             <h1>Demo: @ebay/jquery-active-descendant</h1>
-            <p>With focus on the input, use up and down arrows to change the input's active descendant inside list</p>
-            <input id="demo_input" type="text" aria-label="active descendant demo">
-            <ul id="demo_list">
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
+            <p>With focus on combobox input, use up and down arrows to cycle listbox options</p>
+            <input id="combobox" type="text" role="combobox">
+            <ul id="combobox_list" role="listbox">
+                <li role="option">Item 1</li>
+                <li role="option">Item 2</li>
+                <li role="option">Item 3</li>
             </ul>
         </div>
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
@@ -34,9 +35,9 @@
         <script src="jquery.activedescendant.js"></script>
         <script>
             $(function() {
-                $("#demo_input").activeDescendant($('#demo_list > li'));
+                $("#combobox").activeDescendant($('#combobox_list > li'));
 
-                $("#demo_input").on('activeDescendantChange', function(e, activeDescendant) {
+                $("#combobox").on('activeDescendantChange', function(e, activeDescendant) {
                     console.log('activeDescendantChange', e, activeDescendant);
                 });
             });
