@@ -17,13 +17,13 @@ describe("jquery.activedescendant.js", function() {
         $descendants = $widget.find('li');
     });
 
-    it("should trigger change.activeDescendant event on downArrowKeyDown", function(done) {
+    it("should trigger activeDescendantChange event on downArrowKeyDown", function(done) {
         $widget.activeDescendant($descendants);
         $widget.on('activeDescendantChange', done);
         $widget.trigger('downArrowKeyDown');
     });
 
-    it("should trigger change.activeDescendant event on upArrowKeyDown", function(done) {
+    it("should trigger activeDescendantChange event on upArrowKeyDown", function(done) {
         $widget.activeDescendant($descendants);
         $widget.on('activeDescendantChange', done);
         $widget.trigger('upArrowKeyDown');
