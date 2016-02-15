@@ -8,7 +8,7 @@
 jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour).
 
 ```js
-$(input).activeDescendant($collection);
+$(input).activeDescendant(focusableItemSelector, descendantItemsSelector);
 ```
 
 ## Experimental
@@ -26,68 +26,77 @@ npm install @ebay/jquery-active-descendant
 Input HTML:
 
 ```html
-<input id="input" />
-<ul id="input-suggestions">
-    <li>A</li>
-    <li>B</li>
-    <li>C</li>
-</ul>
+<div class="widget">
+    <input role="combobox" />
+    <ul role="listbox">
+        <li role="option">A</li>
+        <li role="option">B</li>
+        <li role="option">C</li>
+    </ul>
+</div>
 ```
 
 Execute plugin:
 
 ```js
-$('#input').activeDescendant($('#input-suggestions li'));
+$('.widget').activeDescendant('[role=combobox]', '[role=option]');
 ```
 
 Output HTML:
 
 ```html
-<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
-<ul id="input-suggestions">
-    <li>A</li>
-    <li>B</li>
-    <li>C</li>
-</ul>
+<div class="widget">
+    <input role="combobox" />
+    <ul role="listbox">
+        <li role="option" id="nid-0">A</li>
+        <li role="option" id="nid-1">B</li>
+        <li role="option" id="nid-2">C</li>
+    </ul>
+</div>
 ```
 
 First down arrow key produces:
 
 ```html
-<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
-<ul id="input-suggestions">
-    <li id="input-suggestions-activedescendant">A</li>
-    <li>B</li>
-    <li>C</li>
-</ul>
+<div class="widget">
+    <input role="combobox" aria-activedescendant="nid-0" />
+    <ul role="listbox">
+        <li role="option" id="nid-0">A</li>
+        <li role="option" id="nid-1">B</li>
+        <li role="option" id="nid-2">C</li>
+    </ul>
+</div>
 ```
 
 Next down arrow key produces:
 
 ```html
-<input id="input" aria-activedescendant="input-suggestions-activedescendant" />
-<ul id="input-suggestions">
-    <li>A</li>
-    <li id="input-suggestions-activedescendant">B</li>
-    <li>C</li>
-</ul>
+<div class="widget">
+    <input role="combobox" aria-activedescendant="nid-1" />
+    <ul role="listbox">
+        <li role="option" id="nid-0">A</li>
+        <li role="option" id="nid-1">B</li>
+        <li role="option" id="nid-2">C</li>
+    </ul>
+</div>
 ```
 
 To listen for active descendant change:
 
 ```js
-$('#input').on('activeDescendantChange', function(e, newActiveDescendant) {});
+$('.widget').on('activeDescendantChange', function(e, newActiveDescendant) {});
 ```
 
 To update the active descendant collection:
 
 ```js
-$('#input').trigger('updateActiveDescendantCollection', [$newCollection]);
+$('.widget').trigger('updateActiveDescendantCollection', [$newCollection]);
 ```
 
 ## Params
 
-* `collection` - the collection of descendants (not always DOM siblings!)
+* `focusableItemSelector` - selector for focusable item in relation to widget
+* `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
 
 ## Events
 

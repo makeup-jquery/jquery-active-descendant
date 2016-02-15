@@ -1,9 +1,11 @@
 /**
- * @file jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
+ * @file jQuery collection plugin that implements aria-activedescendant keyboard navigation on given widgets
  * @author Ian McBurnie <ianmcburnie@hotmail.com>
  */
 
 (function($, window, document, undefined) {
+
+    var pluginName = 'jquery-active-descendant';
 
     /**
     * jQuery definition to anchor JsDoc comments.
@@ -24,15 +26,14 @@
     */
 
     /**
-    * jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation
+    * jQuery collection plugin that implements aria-activedescendant keyboard navigation on given widgets
     *
     * @class activeDescendant
-    * @version 0.6.1
-    * @param {object} collection - the jQuery collection of active descendant candidates
+    * @version 0.7.0
     * @fires activeDescendantChange - when activedescendant changes
     * @listens updateActiveDescendantCollection - to receive new descendant items
-    * @param {object} options
-    * @param {boolean} options.useFixedActiveDescendantId - Use a fixed active descendant (default:false)
+    * @param {string} focusItemSelector - targets the focusable descendant item (in relation to widget)
+    * @param {string} descendantItemsSelector - targets the descendant items (in relation to widget) that can be active
     * @return {jQuery} chainable jQuery class
     * @requires @ebay/jquery-next-id
     * @requires @ebay/jquery-common-keydown
@@ -58,98 +59,84 @@
     * @memberof jQuery.fn.activeDescendant
     */
 
-    $.fn.activeDescendant = function activeDescendant(collection, options) {
+    $.fn.activeDescendant = function activeDescendant(focusItem, descendantItems, options) {
 
         options = options || {};
 
         return this.each(function onEach() {
 
-            var $this = $(this);
-            var id = $this.prop('id');
-            var useFixedActiveDescendantId = options.useFixedActiveDescendantId;
-            var fixedActiveDescendantId;
-            var $descendants;
+            var $widget = $(this);
+            var $focusItem = $widget.find(focusItem);
+            var $descendantItems;
 
-            var getCurrentActiveDescendant = function() {
-                return useFixedActiveDescendantId ? $('#' + fixedActiveDescendantId) : $('#' + $this.attr('aria-activedescendant'));
-            };
+            $widget.nextId();
+            $focusItem.commonKeyDown();
 
-            var updateActiveDescendantDom = function($activedescendant, $newActiveDescendant) {
-                if (useFixedActiveDescendantId) {
-                    $activedescendant.removeAttr('id');
-                    $newActiveDescendant.prop('id', fixedActiveDescendantId);
-                } else {
-                    $this.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
-                    $activedescendant.removeClass('activedescendant');
-                    $newActiveDescendant.addClass('activedescendant');
-                }
-            };
-
-            $this.nextId();
-            $this.commonKeyDown();
-
-            if (useFixedActiveDescendantId) {
-                fixedActiveDescendantId = $this.prop('id') + '-activedescendant';
-                $this.attr('aria-activedescendant', fixedActiveDescendantId);
-            }
-
-            $this.on('updateActiveDescendantCollection', function(e, collection) {
-                $descendants = $(collection);
-                $descendants.nextId();
-                $descendants.each(function(itemIdx) {
-                    // store index position in element's dataset
+            $widget.on('updateActiveDescendantCollection', function(e, collection) {
+                $descendantItems = $widget.find(collection);
+                $descendantItems.nextId();
+                $descendantItems.each(function(idx, itm) {
+                    // store index position in element data
                     // remember, descendants are not always siblings in DOM!
-                    $(this).eq(0).data(id, {'activedescendant': itemIdx});
+                    $(itm).data(pluginName, {'idx': idx});
                 });
             });
 
-            $this.on('blur', function() {
-                if (!useFixedActiveDescendantId) {
-                    $('#' + $this.attr('aria-activedescendant')).removeClass('activedescendant');
-                    $this.removeAttr('aria-activedescendant');
+            $focusItem.on('blur', function() {
+                $('#' + $focusItem.attr('aria-activedescendant')).removeClass('activedescendant');
+                $focusItem.removeAttr('aria-activedescendant');
+            });
+
+            // todo: normalise following two functions
+
+            $focusItem.on('downArrowKeyDown', function onDownArrowKeyDown(e) {
+                if ($descendantItems) {
+                    var $activedescendant = $('#' + $focusItem.attr('aria-activedescendant'));
+                    var $newActiveDescendant;
+
+                    if ($activedescendant.size() === 0) {
+                        $newActiveDescendant = $descendantItems.first();
+                    } else {
+                        var itemIdx = $activedescendant.data(pluginName).idx;
+                        var $nextEl = $descendantItems.eq(itemIdx + 1);
+                        var hasNextEl = $nextEl.length === 1;
+                        var $firstEl = $descendantItems.eq(0);
+
+                        $newActiveDescendant = (hasNextEl) ? $nextEl : $firstEl;
+                    }
+
+                    $focusItem.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
+                    $activedescendant.removeClass('activedescendant');
+                    $newActiveDescendant.addClass('activedescendant');
+                    $widget.trigger('activeDescendantChange', $newActiveDescendant);
                 }
             });
 
-            $this.on('downArrowKeyDown', function onDownArrowKeyDown(e) {
-                var $activedescendant = getCurrentActiveDescendant();
-                var $newActiveDescendant;
+            $focusItem.on('upArrowKeyDown', function onUpArrowKeyDown(e) {
+                if ($descendantItems) {
+                    var $activedescendant = $('#' + $focusItem.attr('aria-activedescendant'));
+                    var $newActiveDescendant;
 
-                if ($activedescendant.size() === 0) {
-                    $newActiveDescendant = $descendants.first();
-                } else {
-                    var itemIdx = $activedescendant.data(id).activedescendant;
-                    var $nextEl = $descendants.eq(itemIdx + 1);
-                    var hasNextEl = $nextEl.length === 1;
-                    var $firstEl = $descendants.eq(0);
+                    if ($activedescendant.size() === 0) {
+                        $newActiveDescendant = $descendantItems.last();
+                    } else {
+                        var itemIdx = $activedescendant.data(pluginName).idx;
+                        var $prevEl = $descendantItems.eq(itemIdx - 1);
+                        var hasPrevEl = $prevEl.length === 1;
+                        var $lastEl = $descendantItems.eq($descendantItems.length - 1);
 
-                    $newActiveDescendant = (hasNextEl) ? $nextEl : $firstEl;
+                        $newActiveDescendant = (hasPrevEl) ? $prevEl : $lastEl;
+                    }
+
+                    $focusItem.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
+                    $activedescendant.removeClass('activedescendant');
+                    $newActiveDescendant.addClass('activedescendant');
+                    $widget.trigger('activeDescendantChange', $newActiveDescendant);
                 }
-
-                updateActiveDescendantDom($activedescendant, $newActiveDescendant);
-                $this.trigger('activeDescendantChange', $newActiveDescendant);
             });
 
-            $this.on('upArrowKeyDown', function onUpArrowKeyDown(e) {
-                var $activedescendant = getCurrentActiveDescendant();
-                var $newActiveDescendant;
-
-                if ($activedescendant.size() === 0) {
-                    $newActiveDescendant = $descendants.last();
-                } else {
-                    var itemIdx = $activedescendant.data(id).activedescendant;
-                    var $prevEl = $descendants.eq(itemIdx - 1);
-                    var hasPrevEl = $prevEl.length === 1;
-                    var $lastEl = $descendants.eq($descendants.length - 1);
-
-                    $newActiveDescendant = (hasPrevEl) ? $prevEl : $lastEl;
-                }
-
-                updateActiveDescendantDom($activedescendant, $newActiveDescendant);
-                $this.trigger('activeDescendantChange', $newActiveDescendant);
-            });
-
-            if (collection) {
-                $this.trigger('updateActiveDescendantCollection', [collection]);
+            if (descendantItems) {
+                $widget.trigger('updateActiveDescendantCollection', [descendantItems]);
             }
         });
     };

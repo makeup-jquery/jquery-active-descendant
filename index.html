@@ -4,30 +4,43 @@
         <title>Demo: @ebay/jquery-active-descendant</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
-            div div > * {
+            div div {
                 margin-left: 2em;
             }
-            #combobox_list li.activedescendant,
-            #combobox_list li[id*=activedescendant] {
-                background-color: black;
-                color: white;
-            }
-            #combobox_list {
+            [role=listbox] {
                 list-style-type: none;
                 padding: 0;
+            }
+            [role=listbox] [role=option].activedescendant {
+                background-color: black;
+                color: white;
             }
         </style>
     </head>
     <body>
         <div role="main">
             <h1>Demo: @ebay/jquery-active-descendant</h1>
-            <p>With focus on combobox input, use up and down arrows to cycle listbox options</p>
-            <input id="combobox" type="text" role="combobox">
-            <ul id="combobox_list" role="listbox">
-                <li role="option">Item 1</li>
-                <li role="option">Item 2</li>
-                <li role="option">Item 3</li>
-            </ul>
+            <p>With focus on a textbox, use up and down arrows to cycle through options</p>
+
+            <h2>Widget 1</h2>
+            <div class="widget">
+                <input type="text" role="combobox">
+                <ul role="listbox">
+                    <li role="option">Option 1</li>
+                    <li role="option">Option 2</li>
+                    <li role="option">Option 3</li>
+                </ul>
+            </div>
+
+            <h2>Widget 2</h2>
+            <div class="widget">
+                <input type="text" role="combobox">
+                <ul role="listbox">
+                    <li role="option">Option 1</li>
+                    <li role="option">Option 2</li>
+                    <li role="option">Option 3</li>
+                </ul>
+            </div>
         </div>
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/@ebay/jquery-next-id/jquery.nextid.js"></script>
@@ -35,10 +48,14 @@
         <script src="jquery.activedescendant.js"></script>
         <script>
             $(function() {
-                $("#combobox").activeDescendant($('#combobox_list > li'));
+                $(".widget").activeDescendant('[role=combobox]', '[role=option]');
 
-                $("#combobox").on('activeDescendantChange', function(e, activeDescendant) {
+                $(".widget").on('activeDescendantChange', function(e, activeDescendant) {
                     console.log('activeDescendantChange', e, activeDescendant);
+                });
+
+                $(".widget [role=option]").on('click', function(e) {
+                    console.log($(this).data());
                 });
             });
         </script>
