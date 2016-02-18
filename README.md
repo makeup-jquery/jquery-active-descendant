@@ -117,18 +117,31 @@ Execute `npm run` to view all available CLI scripts:
 
 * `npm start` test driven development: watches code and re-tests after any change
 * `npm test` runs tests & generates reports (see reports section below)
-* `npm run lint` lints code and reports to jshint.txt
+* `npm run lintsyntax` lints code for syntax and style (reports errors to jshint.txt)
+* `npm run lintstyle` lints code for syntax (reports errors to jscs.txt)
+* `npm run lint` lints code for syntax and style
+* `npm run fixstyle` attempts to auto fix style errors
 * `npm run minify` builds minified version of code
-* `npm run build` cleans, lints, tests and minifies (called on `npm prepublish` hook)
-* `npm run clean` deletes all generated test reports and coverage files
+* `npm run jsdoc` generates jsdocs
+* `npm run build` minifies code and generates jsdocs
+* `npm run clean` deletes all generated files
 
-## Reports
+The following hooks exist, and do not need to be invoked manually:
+
+* `npm prepublish` cleans, lints, tests and builds on every `npm publish` command
+* `pre-commit` cleans, lints, tests and builds on every `git commit` command
+
+## Test Reports
 
 Each test run will generate the following reports:
 
 * `/test_reports/coverage` contains Istanbul code coverage report
 * `/test_reports/html` contains HTML test report
 * `/test_reports/junit` contains JUnit test report
+
+## JSDocs
+
+JSDocs are generated under `./jsdoc` folder.
 
 ## CI Build
 
