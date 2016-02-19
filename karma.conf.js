@@ -19,6 +19,8 @@ module.exports = function(config) {
       'node_modules/@ebay/jquery-next-id/jquery.nextid.js',
       'node_modules/@ebay/jquery-common-keydown/jquery.commonkeydown.js',
       'jquery.activedescendant.js',
+      'test-data.js',
+      'test-setup.js',
       'test.js'
     ],
 
