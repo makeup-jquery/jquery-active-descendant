@@ -61,7 +61,7 @@ First down arrow key produces:
 <div class="widget">
     <input role="combobox" aria-activedescendant="nid-0" />
     <ul role="listbox">
-        <li role="option" id="nid-0">A</li>
+        <li role="option" id="nid-0" class="activedescendant">A</li>
         <li role="option" id="nid-1">B</li>
         <li role="option" id="nid-2">C</li>
     </ul>
@@ -75,7 +75,7 @@ Next down arrow key produces:
     <input role="combobox" aria-activedescendant="nid-1" />
     <ul role="listbox">
         <li role="option" id="nid-0">A</li>
-        <li role="option" id="nid-1">B</li>
+        <li role="option" id="nid-1" class="activedescendant">B</li>
         <li role="option" id="nid-2">C</li>
     </ul>
 </div>
