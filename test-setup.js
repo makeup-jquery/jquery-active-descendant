@@ -1,35 +1,17 @@
-// event mocks that will be spied on
-var eventHandlerMocks = {
-    onActiveDescendantChange : function() {}
-};
-
-// cache useful elements
-var $widget;
-var $focusItem;
-var $descendantItems;
-
-function setupDom(html) {
+// called by every test suite
+function setupSuite(html) {
+    // setup dom
     $('body').empty().html(html);
-}
 
-function setupGlobals() {
+    // setup globals
     $widget = $('.combobox').first();
     $focusItem = $widget.find('[role=combobox]');
     $descendantItems = $widget.find('[role=option]');
-}
+    onActiveDescendantChange = jasmine.createSpy('onActiveDescendantChange');
 
-function setupSpy() {
-    spyOn(eventHandlerMocks, 'onActiveDescendantChange');
-    $widget.on('activeDescendantChange', eventHandlerMocks.onActiveDescendantChange);
-}
-
-function executePlugin() {
+    // execute plugin on widget
     $widget.activeDescendant($focusItem, $descendantItems);
-}
 
-function setupSuite(html) {
-    setupDom(html);
-    setupGlobals();
-    executePlugin();
-    setupSpy();
+    // setup event handlers on widget
+    $widget.on('activeDescendantChange', onActiveDescendantChange);
 }

@@ -19,7 +19,7 @@ data.forEach(function(html) {
         });
 
         it("should not trigger activeDescendantChange event", function() {
-            expect(eventHandlerMocks.onActiveDescendantChange).not.toHaveBeenCalled();
+            expect(onActiveDescendantChange).not.toHaveBeenCalled();
         });
 
     });
@@ -33,7 +33,7 @@ data.forEach(function(html) {
         });
 
         it("should trigger 1 activeDescendantChange event", function() {
-            expect(eventHandlerMocks.onActiveDescendantChange).toHaveBeenCalledTimes(1);
+            expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
         it("should contain only one element with .activedescendant class", function() {
@@ -55,7 +55,7 @@ data.forEach(function(html) {
         });
 
         it("should trigger 1 activeDescendantChange event", function() {
-            expect(eventHandlerMocks.onActiveDescendantChange).toHaveBeenCalledTimes(1);
+            expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
         it("should contain only one element with .activedescendant class", function() {
@@ -78,7 +78,7 @@ data.forEach(function(html) {
         });
 
         it("should trigger 2 activeDescendantChange events", function() {
-            expect(eventHandlerMocks.onActiveDescendantChange).toHaveBeenCalledTimes(2);
+            expect(onActiveDescendantChange).toHaveBeenCalledTimes(2);
         });
 
         it("should contain only one element with .activedescendant class", function() {
@@ -97,7 +97,7 @@ data.forEach(function(html) {
         });
 
         it("should trigger 2 activeDescendantChange events", function() {
-            expect(eventHandlerMocks.onActiveDescendantChange).toHaveBeenCalledTimes(2);
+            expect(onActiveDescendantChange).toHaveBeenCalledTimes(2);
         });
 
         it("should contain only one element with .activedescendant class", function() {
@@ -156,7 +156,7 @@ data.forEach(function(html) {
             setupSuite(html);
 
             $focusItem.focus();
-            $focusItem.trigger('downArrowKeyDown');    
+            $focusItem.trigger('downArrowKeyDown');
             $('body').attr('tabindex', '-1').focus();
         });
 
