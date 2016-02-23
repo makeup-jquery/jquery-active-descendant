@@ -46,8 +46,8 @@ Output HTML:
 
 ```html
 <div class="widget">
-    <input role="combobox" />
-    <ul role="listbox">
+    <input role="combobox" aria-owns="nid-3" />
+    <ul role="listbox" id="nid-3">
         <li role="option" id="nid-0">A</li>
         <li role="option" id="nid-1">B</li>
         <li role="option" id="nid-2">C</li>
@@ -59,8 +59,8 @@ First down arrow key produces:
 
 ```html
 <div class="widget">
-    <input role="combobox" aria-activedescendant="nid-0" />
-    <ul role="listbox">
+    <input role="combobox" aria-owns="nid-3" aria-activedescendant="nid-0" />
+    <ul role="listbox" id="nid-3">
         <li role="option" id="nid-0" aria-selected="true">A</li>
         <li role="option" id="nid-1">B</li>
         <li role="option" id="nid-2">C</li>
@@ -72,8 +72,8 @@ Next down arrow key produces:
 
 ```html
 <div class="widget">
-    <input role="combobox" aria-activedescendant="nid-1" />
-    <ul role="listbox">
+    <input role="combobox" aria-owns="nid-3" aria-activedescendant="nid-1" />
+    <ul role="listbox" id="nid-3">
         <li role="option" id="nid-0">A</li>
         <li role="option" id="nid-1" aria-selected="true">B</li>
         <li role="option" id="nid-2">C</li>
