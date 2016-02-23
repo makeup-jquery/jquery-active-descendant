@@ -7,6 +7,7 @@ function setupSuite(html) {
     $widget = $('.combobox').first();
     $focusItem = $widget.find('[role=combobox]');
     $descendantItems = $widget.find('[role=option]');
+    $descendantItemsContainer = $descendantItems.first().parents().has($descendantItems.last()).first();
     onActiveDescendantChange = jasmine.createSpy('onActiveDescendantChange');
 
     // execute plugin on widget

@@ -29,7 +29,7 @@
     * jQuery collection plugin that implements aria-activedescendant keyboard navigation on given widgets
     *
     * @class activeDescendant
-    * @version 0.7.1
+    * @version 0.8.0
     * @fires activeDescendantChange - when activedescendant changes
     * @listens updateActiveDescendantCollection - to receive new descendant items
     * @param {string} focusItemSelector - targets the focusable descendant item (in relation to widget)
@@ -66,15 +66,21 @@
             var $widget = $(this);
             var $focusItem = $widget.find(focusItem);
             var $descendantItems;
+            var $descendantItemsContainer;
 
             // listen for common key down events
             $focusItem.commonKeyDown();
 
+            // retrieve the common ancestor of descendant items (i.e. the container element)
+            function getDescendantItemsCommonAncestor() {
+                return $descendantItems.first().parents().has($descendantItems.last()).first();
+            }
+
             // all dom manipulation after arrow key press is done here
             function updateDom($activeDescendant, $newActiveDescendant) {
                 $focusItem.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
-                $activeDescendant.removeClass('activedescendant');
-                $newActiveDescendant.addClass('activedescendant');
+                $activeDescendant.removeAttr('aria-selected');
+                $newActiveDescendant.attr('aria-selected', 'true');
                 $widget.trigger('activeDescendantChange', $newActiveDescendant);
             }
 
@@ -89,12 +95,23 @@
                 $descendantItems.each(function(idx, itm) {
                     $(itm).data(pluginName, {'idx': idx});
                 });
+
+                // on first pass retrieve and store descendant items container reference
+                if ($descendantItemsContainer === undefined) {
+                    $descendantItemsContainer = getDescendantItemsCommonAncestor();
+
+                    // ensure container has an id
+                    $descendantItemsContainer.nextId();
+
+                    // focus item must programatically 'own' the container of descendant items
+                    $focusItem.attr('aria-owns', $descendantItemsContainer.prop('id'));
+                }
             });
 
             // remove active descendant attr and class when widget loses focus
             $focusItem.on('blur', function() {
-                $('#' + $focusItem.attr('aria-activedescendant')).removeClass('activedescendant');
                 $focusItem.removeAttr('aria-activedescendant');
+                $widget.find('[aria-selected=true]').removeAttr('aria-selected');
             });
 
             // on down arrow key: find out the current & new active descendant and update the DOM
