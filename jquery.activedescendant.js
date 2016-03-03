@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements aria-activedescendant keyboard navigation on given widgets
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.9.0
+* @version 0.9.1
 * @requires jquery
 * @requires @ebay/jquery-next-id
 * @requires @ebay/jquery-common-keydown

@@ -1,7 +1,8 @@
 {
     "dependencies":[
         {"require-run": "jquery"},
-        {"require-run": "@ebay/jquery-next-id"},
-        {"require-run": "@ebay/jquery-common-keydown"}
+        "@ebay/jquery-next-id",
+        "@ebay/jquery-common-keydown",
+        "jquery.activedescendant.js"
     ]
 }
