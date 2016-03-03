@@ -25,7 +25,9 @@
             <h2>Widget 0</h2>
             <div class="widget">
                 <input type="text" role="combobox">
-
+                <ul role="listbox">
+                    
+                </ul>
             </div>
 
             <h2>Widget 1</h2>
@@ -54,6 +56,10 @@
                     <li role="option">Option 3</li>
                 </ul>
             </div>
+
+            <hr />
+
+            <button id="append-items">Append New Items</button>
         </div>
         <script src="node_modules/jquery/dist/jquery.min.js"></script>
         <script src="node_modules/@ebay/jquery-next-id/jquery.nextid.js"></script>
@@ -70,6 +76,11 @@
                 $(".widget [role=option]").on('click', function(e) {
                     console.log($(this).data());
                 });
+
+                $('button#append-items').on('click', function() {
+                    $('[role=listbox]').append('<li role="option">Option n</li>');
+                    $(".widget").trigger('activeDescendantItemsChange');
+                })
             });
         </script>
     </body>

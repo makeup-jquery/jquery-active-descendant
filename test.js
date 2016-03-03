@@ -6,16 +6,16 @@ data.forEach(function(html) {
             setupSuite(html);
         });
 
-        it("should have 0 idx value on 1st item", function() {
+        it("should have idx data value of 0 on 1st item", function() {
             expect($descendantItems.first().data('jquery-active-descendant').idx).toBe(0);
         });
 
-        it("should have size()-1 idx value on last item ", function() {
-            expect($descendantItems.last().data('jquery-active-descendant').idx).toBe($descendantItems.size() - 1);
+        it("should have idx data value of length-1 on last item ", function() {
+            expect($descendantItems.last().data('jquery-active-descendant').idx).toBe($descendantItems.length - 1);
         });
 
         it("should contain zero elements with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(0);
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(0);
         });
 
         it("should not trigger activeDescendantChange event", function() {
@@ -36,10 +36,13 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
-        it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(1);
+        it("should have first child item as activeDescendantChange event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[0].id);
         });
 
+        it("should contain only one element with aria-selected=true", function() {
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
+        });
 
         it("first item should have aria-selected=true", function() {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
@@ -59,8 +62,12 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
+        it("should have last child item as activeDescendantChange event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[$descendantItems.length - 1].id);
+        });
+
         it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(1);
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
         });
 
         it("last item should have aria-selected=true", function() {
@@ -83,7 +90,7 @@ data.forEach(function(html) {
         });
 
         it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(1);
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
         });
 
     });
@@ -102,7 +109,7 @@ data.forEach(function(html) {
         });
 
         it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(1);
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
         });
 
     });
@@ -127,6 +134,10 @@ data.forEach(function(html) {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
 
+        it("should have first item as event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[0].id);
+        });
+
     });
 
     describe("when first item is active and up arrow is pressed", function() {
@@ -149,6 +160,10 @@ data.forEach(function(html) {
             expect($descendantItems.last().attr('aria-selected')).toBe('true');
         });
 
+        it("should have last item as event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[$descendantItems.length - 1].id);
+        });
+
     });
 
     describe("when widget loses focus after interaction", function() {
@@ -162,7 +177,7 @@ data.forEach(function(html) {
         });
 
         it("should contain zero elements with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').size()).toBe(0);
+            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(0);
         });
 
     });

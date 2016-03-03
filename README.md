@@ -7,19 +7,34 @@
 
 jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour).
 
+## Install
+
 ```js
-$(input).activeDescendant(focusableItemSelector, descendantItemsSelector);
+npm install @ebay/jquery-active-descendant
 ```
 
 ## Experimental
 
 This plugin is still in an experimental state, until it reaches v1.0.0 you must consider all minor releases as breaking changes. Patch releases may introduce new features, but will be backwards compatible.
 
-## Install
+## Signature
 
 ```js
-npm install @ebay/jquery-active-descendant
+$(input).activeDescendant(focusableItemSelector, descendantItemsSelector);
 ```
+
+## Params
+
+* `focusableItemSelector` - selector for focusable item in relation to widget
+* `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
+
+## Triggers
+
+* `activeDescendantChange` - when active descendant has changed
+
+## Observes
+
+* `activeDescendantItemsChange` - when collection of active descendant items has been updated
 
 ## Example
 
@@ -81,28 +96,6 @@ Next down arrow key produces:
 </div>
 ```
 
-To listen for active descendant change:
-
-```js
-$('.widget').on('activeDescendantChange', function(e, newActiveDescendant) {});
-```
-
-To update the active descendant collection:
-
-```js
-$('.widget').trigger('updateActiveDescendantCollection', [$newCollection]);
-```
-
-## Params
-
-* `focusableItemSelector` - selector for focusable item in relation to widget
-* `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
-
-## Events
-
-* `activeDescendantChange` - when active descendant has changed
-* `updateActiveDescendantCollection` - update the active descendant collection
-
 ## Dependencies
 
 * [jquery](https://jquery.com/)
@@ -131,18 +124,6 @@ The following hooks exist, and do not need to be invoked manually:
 * `npm prepublish` cleans, lints, tests and builds on every `npm publish` command
 * `pre-commit` cleans, lints, tests and builds on every `git commit` command
 
-## Test Reports
-
-Each test run will generate the following reports:
-
-* `/test_reports/coverage` contains Istanbul code coverage report
-* `/test_reports/html` contains HTML test report
-* `/test_reports/junit` contains JUnit test report
-
-## JSDocs
-
-JSDocs are generated under `./jsdoc` folder.
-
 ## CI Build
 
 https://travis-ci.org/ianmcburnie/jquery-active-descendant
@@ -150,3 +131,11 @@ https://travis-ci.org/ianmcburnie/jquery-active-descendant
 ## Code Coverage
 
 https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master
+
+## Test Reports
+
+Local test and coverage reports are generated under `.test_reports` folder.
+
+## JSDocs
+
+Local JSDocs are generated under `./jsdoc` folder.
