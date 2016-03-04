@@ -3,6 +3,8 @@
 <p>
     <a href="https://travis-ci.org/ianmcburnie/jquery-active-descendant"><img src="https://api.travis-ci.org/ianmcburnie/jquery-active-descendant.svg?branch=master" alt="Build Status" /></a>
     <a href='https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master'><img src='https://coveralls.io/repos/ianmcburnie/jquery-active-descendant/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+    <a href="https://david-dm.org/ianmcburnie/jquery-active-descendant"><img src="https://david-dm.org/ianmcburnie/jquery-active-descendant.svg" alt="Dependency status" /></a>
+    <a href="https://david-dm.org/ianmcburnie/jquery-active-descendant#info=devDependencies"><img src="https://david-dm.org/ianmcburnie/jquery-active-descendant/dev-status.svg" alt="devDependency status" /></a>
 </p>
 
 jQuery collection plugin that implements dynamic aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour).
