@@ -1,4 +1,4 @@
-# @ebay/jquery-active-descendant
+# jquery-active-descendant
 
 <p>
     <a href="https://travis-ci.org/ianmcburnie/jquery-active-descendant"><img src="https://api.travis-ci.org/ianmcburnie/jquery-active-descendant.svg?branch=master" alt="Build Status" /></a>
@@ -12,7 +12,7 @@ jQuery collection plugin that implements dynamic aria-activedescendant keyboard 
 ## Install
 
 ```js
-npm install @ebay/jquery-active-descendant
+npm install jquery-active-descendant
 ```
 
 ## Experimental
@@ -101,8 +101,8 @@ Next down arrow key produces:
 ## Dependencies
 
 * [jquery](https://jquery.com/)
-* [@ebay/jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
-* [@ebay/jquery-common-keydown](https://github.com/ianmcburnie/jquery-common-keydown)
+* [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
+* [jquery-common-keydown](https://github.com/ianmcburnie/jquery-common-keydown)
 
 ## Development
 

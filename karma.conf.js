@@ -16,8 +16,8 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'node_modules/jquery/dist/jquery.min.js',
-      'node_modules/@ebay/jquery-next-id/jquery.nextid.js',
-      'node_modules/@ebay/jquery-common-keydown/jquery.commonkeydown.js',
+      'node_modules/jquery-next-id/jquery.nextid.js',
+      'node_modules/jquery-common-keydown/jquery.commonkeydown.js',
       'jquery.activedescendant.js',
       'test-data.js',
       'test-setup.js',
