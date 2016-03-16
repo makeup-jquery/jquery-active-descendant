@@ -11,9 +11,17 @@ jQuery collection plugin that implements dynamic aria-activedescendant keyboard 
 
 ## Install
 
+<strike>
+```
+npm install @ebay/jquery-active-descendant
+```
+</strike>
+
 ```js
 npm install jquery-active-descendant
 ```
+
+**NOTE: The @ebay package scope is no longer supported. In order to receive latest NPM updates, please use the non-scoped version of this package.**
 
 ## Experimental
 
