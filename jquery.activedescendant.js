@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.10.0
+* @version 0.11.0
 * @requires jquery
 * @requires jquery-next-id
 * @requires jquery-common-keydown
