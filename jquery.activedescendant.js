@@ -1,13 +1,12 @@
 /**
-* @file jQuery collection plugin that implements aria-activedescendant keyboard navigation on given widgets
+* @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.9.1
+* @version 0.10.0
 * @requires jquery
 * @requires jquery-next-id
 * @requires jquery-common-keydown
 */
 (function($, window, document, undefined) {
-
     var pluginName = 'jquery-active-descendant';
 
     /**
@@ -22,9 +21,7 @@
     * @todo maybe offer an option to listen to 'input' events on the focus item (i.e. autocomplete use-case)
     */
     $.fn.activeDescendant = function activeDescendant(focusItemSelector, descendantItemsSelector) {
-
         return this.each(function onEach() {
-
             var $widget = $(this);
             var $focusItem = $widget.find(focusItemSelector);
             var $descendantItems;
@@ -55,7 +52,7 @@
 
                 // store index position in element data. remember, descendants are not always siblings in DOM!
                 $descendantItems.each(function(idx, itm) {
-                    $(itm).data(pluginName, {'idx': idx});
+                    $(itm).data(pluginName, {idx: idx});
                 });
 
                 // on first pass retrieve and store descendant items container reference
@@ -125,7 +122,6 @@
             updateActiveDescendantItems();
         });
     };
-
 }(jQuery, window, document));
 
 /**
