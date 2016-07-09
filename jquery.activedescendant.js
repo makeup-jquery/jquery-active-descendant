@@ -1,10 +1,10 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.11.0
+* @version 0.12.0
 * @requires jquery
+* @requires jquery-linear-navigation
 * @requires jquery-next-id
-* @requires jquery-common-keydown
 */
 (function($, window, document, undefined) {
     var pluginName = 'jquery-active-descendant';
@@ -22,38 +22,49 @@
     */
     $.fn.activeDescendant = function activeDescendant(focusItemSelector, descendantItemsSelector) {
         return this.each(function onEach() {
+            // the widget is the root level element/container
             var $widget = $(this);
-            var $focusItem = $widget.find(focusItemSelector);
-            var $descendantItems;
-            var $descendantItemsContainer;
 
-            // listen for common key down events
-            $focusItem.commonKeyDown();
+            // the focus item is the focusable element that has active descendants
+            var $focusItem = $widget.find(focusItemSelector);
+
+            // we keep a reference to the actual items that can be navigated
+            var $descendantItems;
+
+            // we keep a reference to the common ancestor of the items
+            var $descendantItemsContainer;
 
             // retrieve the common ancestor of descendant items (i.e. the container element)
             function getDescendantItemsCommonAncestor() {
                 return $descendantItems.first().parents().has($descendantItems.last()).first();
             }
 
-            // all dom manipulation after arrow key press is done here
-            function updateDom($activeDescendant, $newActiveDescendant) {
+            // all dom manipulation after keyboard input is done here
+            function update(currentActiveDescendant, newActiveDescendant) {
+                var $currentActiveDescendant = $(currentActiveDescendant);
+                var $newActiveDescendant = $(newActiveDescendant);
+
+                // update the aria-activedescendant pointer
                 $focusItem.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
-                $activeDescendant.removeAttr('aria-selected');
+
+                // update the aria-selected state (needed for voiceover)
+                $currentActiveDescendant.removeAttr('aria-selected');
                 $newActiveDescendant.attr('aria-selected', 'true');
+
+                // inform observers of change
                 $widget.trigger('activeDescendantChange', $newActiveDescendant);
             }
 
-            // update descendant items reference
+            function onLinearNavigationChange(e, data) {
+                update($descendantItems.eq(data.fromIndex), $descendantItems.eq(data.toIndex));
+            }
+
+            // initialise or update descendant items reference
             function updateActiveDescendantItems() {
                 $descendantItems = $widget.find(descendantItemsSelector);
 
                 // ensure items have an id
                 $descendantItems.nextId();
-
-                // store index position in element data. remember, descendants are not always siblings in DOM!
-                $descendantItems.each(function(idx, itm) {
-                    $(itm).data(pluginName, {idx: idx});
-                });
 
                 // on first pass retrieve and store descendant items container reference
                 if ($descendantItemsContainer === undefined && $descendantItems.length > 0) {
@@ -65,6 +76,9 @@
                     // focus item must programatically 'own' the container of descendant items
                     $focusItem.attr('aria-owns', $descendantItemsContainer.prop('id'));
                 }
+
+                // call linearNavigation plugin. This plugin holds state.
+                $widget.linearNavigation(descendantItemsSelector, {activeIndex: -1, clickDelegate: $descendantItems});
             }
 
             // listen for updates to descendants (e.g. new autocomplete values)
@@ -77,49 +91,14 @@
                 $widget.find('[aria-selected=true]').removeAttr('aria-selected');
             });
 
-            // on down arrow key: find out the current & new active descendant and update the DOM
-            $focusItem.on('downArrowKeyDown', function onDownArrowKeyDown(e) {
-                if ($descendantItems.length > 0) {
-                    var $activeDescendant = $widget.find('#' + $focusItem.attr('aria-activedescendant'));
-                    var $newActiveDescendant;
+            // listen to linearNavigationChange event
+            $widget.on('linearNavigationChange', onLinearNavigationChange);
 
-                    if ($activeDescendant.length === 0) {
-                        $newActiveDescendant = $descendantItems.first();
-                    } else {
-                        var itemIdx = $activeDescendant.data(pluginName).idx;
-                        var $nextEl = $descendantItems.eq(itemIdx + 1);
-                        var hasNextEl = $nextEl.length === 1;
-                        var $firstEl = $descendantItems.eq(0);
-
-                        $newActiveDescendant = (hasNextEl) ? $nextEl : $firstEl;
-                    }
-
-                    updateDom($activeDescendant, $newActiveDescendant);
-                }
-            });
-
-            // on up arrow key: find out the current & new active descendant and update the DOM
-            $focusItem.on('upArrowKeyDown', function onUpArrowKeyDown(e) {
-                if ($descendantItems.length > 0) {
-                    var $activeDescendant = $widget.find('#' + $focusItem.attr('aria-activedescendant'));
-                    var $newActiveDescendant;
-
-                    if ($activeDescendant.length === 0) {
-                        $newActiveDescendant = $descendantItems.last();
-                    } else {
-                        var itemIdx = $activeDescendant.data(pluginName).idx;
-                        var $prevEl = $descendantItems.eq(itemIdx - 1);
-                        var hasPrevEl = $prevEl.length === 1;
-                        var $lastEl = $descendantItems.eq($descendantItems.length - 1);
-
-                        $newActiveDescendant = (hasPrevEl) ? $prevEl : $lastEl;
-                    }
-
-                    updateDom($activeDescendant, $newActiveDescendant);
-                }
-            });
-
+            // initialise state on first pass
             updateActiveDescendantItems();
+
+            // store data on widget
+            $.data($widget, pluginName, {installed: true});
         });
     };
 }(jQuery, window, document));

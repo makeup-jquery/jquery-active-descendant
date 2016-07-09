@@ -1,8 +1,8 @@
 {
     "dependencies":[
         {"require-run": "jquery"},
+        "jquery-linear-navigation",
         "jquery-next-id",
-        "jquery-common-keydown",
         "jquery.activedescendant.js"
     ]
 }

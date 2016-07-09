@@ -109,8 +109,8 @@ Next down arrow key produces:
 ## Dependencies
 
 * [jquery](https://jquery.com/)
+* [jquery-linear-navigation](https://github.com/ianmcburnie/jquery-linear-navigation)
 * [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
-* [jquery-common-keydown](https://github.com/ianmcburnie/jquery-common-keydown)
 
 ## Development
 

@@ -7,11 +7,11 @@ data.forEach(function(html) {
         });
 
         it("should have idx data value of 0 on 1st item", function() {
-            expect($descendantItems.first().data('jquery-active-descendant').idx).toBe(0);
+            expect($descendantItems.first().data('jquery-linear-navigation').idx).toBe(0);
         });
 
         it("should have idx data value of length-1 on last item ", function() {
-            expect($descendantItems.last().data('jquery-active-descendant').idx).toBe($descendantItems.length - 1);
+            expect($descendantItems.last().data('jquery-linear-navigation').idx).toBe($descendantItems.length - 1);
         });
 
         it("should contain zero elements with aria-selected=true", function() {
