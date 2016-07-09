@@ -1,7 +1,7 @@
 {
   "name": "jquery-active-descendant",
   "description": "jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "scripts": {
     "start": "karma start --autoWatch true --singleRun false",
     "test": "karma start --autoWatch false --singleRun true",
