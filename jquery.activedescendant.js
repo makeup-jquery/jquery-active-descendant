@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.12.0
+* @version 0.12.1
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-next-id
@@ -78,7 +78,7 @@
                 }
 
                 // call linearNavigation plugin. This plugin holds state.
-                $widget.linearNavigation(descendantItemsSelector, {activeIndex: -1, clickDelegate: $descendantItems});
+                $widget.linearNavigation(descendantItemsSelector, {activeIndex: -1, clickDelegate: $descendantItems.parent()});
             }
 
             // listen for updates to descendants (e.g. new autocomplete values)

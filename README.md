@@ -11,17 +11,9 @@ jQuery collection plugin that implements one-dimensional aria-activedescendant k
 
 ## Install
 
-<strike>
-```
-npm install @ebay/jquery-active-descendant
-```
-</strike>
-
 ```js
 npm install jquery-active-descendant
 ```
-
-**NOTE: The @ebay package scope is no longer supported. In order to receive latest NPM updates, please use the non-scoped version of this package.**
 
 ## Experimental
 
@@ -120,10 +112,8 @@ Execute `npm run` to view all available CLI scripts:
 
 * `npm start` test driven development: watches code and re-tests after any change
 * `npm test` runs tests & generates reports (see reports section below)
-* `npm run lintsyntax` lints code for syntax and style (reports errors to jshint.txt)
-* `npm run lintstyle` lints code for syntax (reports errors to jscs.txt)
 * `npm run lint` lints code for syntax and style
-* `npm run fixstyle` attempts to auto fix style errors
+* `npm run fix` attempts to auto fix style errors
 * `npm run minify` builds minified version of code
 * `npm run jsdoc` generates jsdocs
 * `npm run build` minifies code and generates jsdocs
