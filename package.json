@@ -3,15 +3,19 @@
   "description": "jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation",
   "version": "0.12.1",
   "scripts": {
-    "start": "karma start --autoWatch true --singleRun false",
+    "start": "npm run lasso && parallelshell 'npm run server' 'npm run watch'",
+    "tdd": "karma start --autoWatch true --singleRun false",
     "test": "karma start --autoWatch false --singleRun true",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
     "build": "npm run jsdoc && npm run minify",
-    "clean": "rimraf jsdoc test_reports *.min.js lint.txt",
+    "clean": "rimraf jsdoc test_reports build .cache docs/browser.js.* lint.txt",
     "fix": "eslint jquery.activedescendant.js --fix",
     "jsdoc": "jsdoc jquery.activedescendant.js -d jsdoc",
+    "lasso": "lasso browser.json --output-dir docs --minify",
     "lint": "eslint jquery.activedescendant.js > lint.txt",
-    "minify": "jsmin -o jquery.activedescendant.min.js jquery.activedescendant.js"
+    "minify": "jsmin -o jquery.activedescendant.min.js jquery.activedescendant.js",
+    "server": "browser-sync start -s --ss docs --index docs/index.html --files docs ",
+    "watch": "onchange jquery.activedescendant.js -- npm run lasso"
   },
   "pre-commit": "prepublish",
   "author": "Ian McBurnie <ianmcburnie@hotmail.com>",
@@ -32,8 +36,9 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2",
     "coveralls": "^2",
-    "eslint": "^3.0.0",
+    "eslint": "^3",
     "eslint-config-google": "~0.6",
     "jasmine-core": "^2",
     "jquery": ">=1.11",
@@ -48,6 +53,9 @@
     "karma-jasmine": "^1",
     "karma-junit-reporter": "^1",
     "karma-phantomjs-launcher": "^1",
+    "lasso-cli": "^2",
+    "onchange": "^3",
+    "parallelshell": "^2",
     "phantomjs-prebuilt": "^2",
     "pre-commit": "^1",
     "rimraf": "^2"
