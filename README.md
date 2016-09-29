@@ -7,7 +7,7 @@
     <a href="https://david-dm.org/ianmcburnie/jquery-active-descendant#info=devDependencies"><img src="https://david-dm.org/ianmcburnie/jquery-active-descendant/dev-status.svg" alt="devDependency status" /></a>
 </p>
 
-jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour). NOTE: This plugin is not suitable for two-dimensional grid navigation.
+jQuery collection plugin that implements one or two dimensional aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour) or date picker grid.
 
 ## Install
 
@@ -22,13 +22,14 @@ This plugin is still in an experimental state, until it reaches v1.0.0 you must 
 ## Signature
 
 ```js
-$(input).activeDescendant(focusableItemSelector, descendantItemsSelector);
+$(input).activeDescendant(focusableItemSelector, descendantItemsSelector, options);
 ```
 
 ## Params
 
 * `focusableItemSelector` - selector for focusable item in relation to widget
 * `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
+* `options.isGrid` - set to true to use two-dimensional navigation (default: false)
 
 ## Triggers
 
@@ -38,7 +39,7 @@ $(input).activeDescendant(focusableItemSelector, descendantItemsSelector);
 
 * `activeDescendantItemsChange` - when collection of active descendant items has been updated
 
-## Example
+## Example - One Dimensional
 
 Input HTML:
 
@@ -98,26 +99,48 @@ Next down arrow key produces:
 </div>
 ```
 
+## Example - Two Dimensional
+
+Input HTML:
+
+```html
+<div class="widget">
+    <input type="text">
+    <table>
+        <tbody>
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+            <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+            <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+        </tbody>
+    </table>
+</div>
+```
+
+Execute plugin:
+
+```js
+$('.widget').activeDescendant('table', 'td', {isGrid: true});
+```
+
 ## Dependencies
 
 * [jquery](https://jquery.com/)
+* [jquery-grid-navigation](https://github.com/ianmcburnie/jquery-grid-navigation)
 * [jquery-linear-navigation](https://github.com/ianmcburnie/jquery-linear-navigation)
 * [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
 
 ## Development
 
-Run `npm start` for test driven development. All tests are located in `test.js`.
+Run `npm start` or `npm run tdd` for local development. All tests are located in `test.js`.
 
 Execute `npm run` to view all available CLI scripts:
 
-* `npm start` test driven development: watches code and re-tests after any change
+* `npm start` runs local server and re-syncs browser on any source file change
 * `npm test` runs tests & generates reports (see reports section below)
+* `npm run tdd` test driven development: watches code and re-tests after any change
 * `npm run lint` lints code for syntax and style
 * `npm run fix` attempts to auto fix style errors
-* `npm run minify` builds minified version of code
-* `npm run jsdoc` generates jsdocs
 * `npm run build` minifies code and generates jsdocs
-* `npm run clean` deletes all generated files
 
 The following hooks exist, and do not need to be invoked manually:
 
