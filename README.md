@@ -119,7 +119,7 @@ Input HTML:
 Execute plugin:
 
 ```js
-$('.widget').activeDescendant('table', 'td', {isGrid: true});
+$('.widget').activeDescendant('input', 'td', {isGrid: true});
 ```
 
 ## Dependencies
