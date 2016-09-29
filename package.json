@@ -42,8 +42,9 @@
     "eslint-config-google": "~0.6",
     "jasmine-core": "^2",
     "jquery": ">=1.11",
+    "jquery-grid-navigation": "~0.0",
     "jquery-migrate": "^3",
-    "jquery-linear-navigation": ">=0.0.4",
+    "jquery-linear-navigation": "~0.1",
     "jquery-next-id": "~0.1",
     "jsdoc": "^3",
     "jsmin": "^1",
@@ -62,7 +63,8 @@
   },
   "peerDependencies": {
     "jquery": ">=1.11",
-    "jquery-linear-navigation": ">=0.0.4",
+    "jquery-grid-navigation": "~0.0",
+    "jquery-linear-navigation": "~0.1",
     "jquery-next-id": "~0.1"
   },
   "publishConfig": {

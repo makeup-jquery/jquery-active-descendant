@@ -36,8 +36,8 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
-        it("should have first child item as activeDescendantChange event data", function() {
-            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[0].id);
+        it("should have toIndex:0 as activeDescendantChange event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
 
         it("should contain only one element with aria-selected=true", function() {
@@ -62,16 +62,16 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange).toHaveBeenCalledTimes(1);
         });
 
-        it("should have last child item as activeDescendantChange event data", function() {
-            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[$descendantItems.length - 1].id);
+        it("should have toIndex:0 in activeDescendantChange event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
 
         it("should contain only one element with aria-selected=true", function() {
             expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
         });
 
-        it("last item should have aria-selected=true", function() {
-            expect($descendantItems.last().attr('aria-selected')).toBe('true');
+        it("first item should have aria-selected=true", function() {
+            expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
 
     });
@@ -119,9 +119,12 @@ data.forEach(function(html) {
         beforeAll(function() {
             setupSuite(html);
 
-            // manipulate DOM so that last item is the activedescendant
-            $focusItem.attr('aria-activedescendant', $descendantItems.last().prop('id'));
-            $descendantItems.last().addClass('activedescendant');
+            // init the activedescendant
+            $focusItem.trigger('downArrowKeyDown');
+
+            // manipulate plugin so last item is active
+            $focusItem.trigger('downArrowKeyDown');
+            $focusItem.trigger('downArrowKeyDown');
 
             $focusItem.trigger('downArrowKeyDown');
         });
@@ -134,20 +137,19 @@ data.forEach(function(html) {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
 
-        it("should have first item as event data", function() {
-            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[0].id);
+        it("should have toIndex:0 as event data", function() {
+            expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
 
     });
 
-    describe("when first item is active and up arrow is pressed", function() {
+    describe("when first item is active and up arrow is pressed once", function() {
 
         beforeAll(function() {
             setupSuite(html);
 
-            // manipulate DOM so that first item is the activedescendant
-            $focusItem.attr('aria-activedescendant', $descendantItems.first().prop('id'));
-            $descendantItems.first().addClass('activedescendant');
+            // init the activedescendant
+            $focusItem.trigger('downArrowKeyDown');
 
             $focusItem.trigger('upArrowKeyDown');
         });
@@ -158,10 +160,6 @@ data.forEach(function(html) {
 
         it("aria-selected=true should loop around to last item", function() {
             expect($descendantItems.last().attr('aria-selected')).toBe('true');
-        });
-
-        it("should have last item as event data", function() {
-            expect(onActiveDescendantChange.calls.argsFor(0)[1].id).toBe($descendantItems[$descendantItems.length - 1].id);
         });
 
     });

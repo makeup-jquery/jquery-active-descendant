@@ -4,81 +4,144 @@
         <title>Demo: jquery-active-descendant</title>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <style>
-            div div {
-                margin-left: 2em;
+            body {
+                margin: 0;
+            }
+            #eyebrow {
+                background-color: #333;
+                color: #eee;
+                padding: 10px;
+            }
+            .examples {
+                padding: 10px;
             }
             [role=listbox] {
                 list-style-type: none;
                 padding: 0;
             }
-            [role=listbox] [role=option][aria-selected=true] {
+            [aria-selected=true] {
                 background-color: black;
                 color: white;
+            }
+            .readme {
+                background-color: #eee;
+                padding: 10px;
+            }
+            .widget ul {
+                margin-top: 5px;
+            }
+            .widget input {
+                width: 100%;
+            }
+            .widget table {
+                border-collapse: collapse;
+                margin-top: 5px;
+                width: 100%;
+            }
+            .widget table caption {
+                font-weight: bold;
+            }
+            .widget td {
+                border: 1px solid #eee;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <div role="main">
-            <h1>Demo: jquery-active-descendant</h1>
-            <p>With focus on a textbox, use up and down arrows to cycle through available options</p>
-
-            <h2>Widget 0</h2>
-            <div class="widget">
-                <input type="text" role="combobox">
-                <ul role="listbox">
-
-                </ul>
+            <div id="eyebrow">
+                <h1>Demo: jquery-active-descendant</h1>
             </div>
-
-            <h2>Widget 1</h2>
-            <div class="widget">
-                <input type="text" role="combobox">
-                <ul role="listbox">
-                    <li role="option">Option 1</li>
-                </ul>
+            <div class="readme">
+                <h2>Linear Widgets</h2>
+                <p>With focus on a textbox, use up and down arrows to cycle through available options</p>
+                <button id="append-linear-items">Append New Items</button>
             </div>
+            <div class="examples">
+                <h3>Linear Widget 0</h3>
+                <div class="widget widget--linear">
+                    <input type="text" role="combobox">
+                    <ul role="listbox">
 
-            <h2>Widget 2</h2>
-            <div class="widget">
-                <input type="text" role="combobox">
-                <ul role="listbox">
-                    <li role="option">Option 1</li>
-                    <li role="option">Option 2</li>
-                </ul>
+                    </ul>
+                </div>
+                <h3>Linear Widget 1</h3>
+                <div class="widget widget--linear">
+                    <input type="text" role="combobox">
+                    <ul role="listbox">
+                        <li role="option">Option 1</li>
+                    </ul>
+                </div>
+
+                <h3>Linear Widget 2</h3>
+                <div class="widget widget--linear">
+                    <input type="text" role="combobox">
+                    <ul role="listbox">
+                        <li role="option">Option 1</li>
+                        <li role="option">Option 2</li>
+                    </ul>
+                </div>
+
+                <h3>Linear Widget 3</h3>
+                <div class="widget widget--linear">
+                    <input type="text" role="combobox">
+                    <ul role="listbox">
+                        <li role="option">Option 1</li>
+                        <li role="option">Option 2</li>
+                        <li role="option">Option 3</li>
+                    </ul>
+                </div>
             </div>
-
-            <h2>Widget 3</h2>
-            <div class="widget">
-                <input type="text" role="combobox">
-                <ul role="listbox">
-                    <li role="option">Option 1</li>
-                    <li role="option">Option 2</li>
-                    <li role="option">Option 3</li>
-                </ul>
+            <div class="readme">
+                <h2>Grid Widgets</h2>
+                <p>With focus on a textbox, use up, down, left and right arrows to cycle through available options</p>
+                <button id="append-grid-items">Append New Row</button>
             </div>
-
-            <hr />
-
-            <button id="append-items">Append New Items</button>
+            <div class="examples">
+                <h3>Grid Widget 1</h3>
+                <div class="widget widget--grid">
+                    <input type="text">
+                    <table>
+                        <tbody>
+                            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                            <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-
         <script src="browser.js"></script>
         <script>
             $(function() {
-                $(".widget").activeDescendant('[role=combobox]', '[role=option]');
+                var count = 14;
 
-                $(".widget").on('activeDescendantChange', function(e, activeDescendant) {
-                    console.log(e.type, e, activeDescendant);
+                $(".widget--linear").activeDescendant('input[role=combobox]', 'li[role=option]', {debug: true});
+
+                $(".widget--grid").activeDescendant('input[type=text]', 'td', {debug: true, isGrid: true});
+
+                $(".widget").on('activeDescendantChange', 'li[role=option], td', function(e, data) {
+                    console.log(e, this, data);
                 });
 
-                $(".widget [role=option]").on('click', function(e) {
-
+                $(".widget--grid").on('gridNavigationBoundary', 'td', function(e, data) {
+                    console.log(e, this, data);
                 });
 
-                $('button#append-items').on('click', function() {
+                $('button#append-linear-items').on('click', function() {
                     $('[role=listbox]').append('<li role="option">Option n</li>');
-                    $(".widget").trigger('activeDescendantItemsChange');
-                })
+                    $(".widget--linear").trigger('activeDescendantItemsChange');
+                });
+
+                $('button#append-grid-items').on('click', function() {
+                    var $tr = $('<tr>');
+
+                    for(var i = 0; i < 7; i++) {
+                        $tr.append($('<td>{x}</td>'.replace('{x}', ++count)));
+                    }
+
+                    $("tbody").append($tr);
+                    $(".widget--grid").trigger('activeDescendantItemsChange');
+                });
             });
         </script>
     </body>

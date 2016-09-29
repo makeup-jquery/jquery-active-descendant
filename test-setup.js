@@ -14,5 +14,5 @@ function setupSuite(html) {
     $widget.activeDescendant($focusItem, $descendantItems);
 
     // setup event handlers on widget
-    $widget.on('activeDescendantChange', onActiveDescendantChange);
+    $widget.on('activeDescendantChange', '[role=option]', onActiveDescendantChange);
 }
