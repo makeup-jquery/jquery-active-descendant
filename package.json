@@ -7,7 +7,7 @@
     "tdd": "karma start --autoWatch true --singleRun false",
     "test": "karma start --autoWatch false --singleRun true",
     "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
-    "build": "npm run jsdoc && npm run minify",
+    "build": "npm run jsdoc && npm run minify && npm run lasso",
     "clean": "rimraf jsdoc test_reports build .cache docs/browser.js.* lint.txt",
     "fix": "eslint jquery.activedescendant.js --fix",
     "jsdoc": "jsdoc jquery.activedescendant.js -d jsdoc",
