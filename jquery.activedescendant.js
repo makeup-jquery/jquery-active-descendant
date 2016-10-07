@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.13.0
+* @version 0.13.1
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -22,6 +22,7 @@
     */
     $.fn.activeDescendant = function activeDescendant(focusItemSelector, descendantItemsSelector, options) {
         options = $.extend({
+            axis: 'both',
             isGrid: false,
             autoReset: true,
             autoInit: false,
@@ -116,7 +117,11 @@
                 // prevent textbox caret from moving when controlling active descendant with arrow keys
                 $focusItem.on('keydown', function(e) {
                     var keyCode = e.keyCode;
-                    if (keyCode >= 37 && keyCode <= 40) {
+                    if (options.axis === 'x' && (keyCode === 37 || keyCode === 39)) {
+                        e.preventDefault();
+                    } else if (options.axis === 'y' && (keyCode === 38 || keyCode === 40)) {
+                        e.preventDefault();
+                    } else if (options.axis === 'both' && keyCode >= 37 && keyCode <= 40) {
                         e.preventDefault();
                     }
                 });

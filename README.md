@@ -29,6 +29,7 @@ $(input).activeDescendant(focusableItemSelector, descendantItemsSelector, option
 
 * `focusableItemSelector` - selector for focusable item in relation to widget
 * `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
+* `options.axis` - 'x', 'y' or 'both' (default: 'both')
 * `options.isGrid` - set to true to use two-dimensional navigation (default: false)
 
 ## Triggers
@@ -57,7 +58,7 @@ Input HTML:
 Execute plugin:
 
 ```js
-$('.widget').activeDescendant('[role=combobox]', '[role=option]');
+$('.widget').activeDescendant('[role=combobox]', '[role=option]', { axis: 'y'});
 ```
 
 Output HTML:
