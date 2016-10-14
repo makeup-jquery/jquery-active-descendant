@@ -58,32 +58,17 @@
                 <button id="append-linear-items">Append New Items</button>
             </div>
             <div class="examples">
-                <h3>Linear Widget 0</h3>
-                <div class="widget widget--linear">
-                    <input type="text" role="combobox">
-                    <ul role="listbox">
-
-                    </ul>
-                </div>
                 <h3>Linear Widget 1</h3>
                 <div class="widget widget--linear">
                     <input type="text" role="combobox">
                     <ul role="listbox">
                         <li role="option">Option 1</li>
-                    </ul>
-                </div>
-
-                <h3>Linear Widget 2</h3>
-                <div class="widget widget--linear">
-                    <input type="text" role="combobox">
-                    <ul role="listbox">
-                        <li role="option">Option 1</li>
                         <li role="option">Option 2</li>
+                        <li role="option">Option 3</li>
                     </ul>
                 </div>
-
-                <h3>Linear Widget 3</h3>
-                <div class="widget widget--linear">
+                <h3>Linear Widget 2 (autoWrap: true)</h3>
+                <div class="widget widget--linear-wrap">
                     <input type="text" role="combobox">
                     <ul role="listbox">
                         <li role="option">Option 1</li>
@@ -108,6 +93,16 @@
                         </tbody>
                     </table>
                 </div>
+                <h3>Grid Widget 2 (autoWrap: true)</h3>
+                <div class="widget widget--grid-wrap">
+                    <input type="text">
+                    <table>
+                        <tbody>
+                            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+                            <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <script src="browser.js"></script>
@@ -116,8 +111,10 @@
                 var count = 14;
 
                 $(".widget--linear").activeDescendant('input[role=combobox]', 'li[role=option]', {debug: true, axis: 'y'});
+                $(".widget--linear-wrap").activeDescendant('input[role=combobox]', 'li[role=option]', {debug: true, autoWrap: true, axis: 'y'});
 
                 $(".widget--grid").activeDescendant('input[type=text]', 'td', {debug: true, isGrid: true});
+                $(".widget--grid-wrap").activeDescendant('input[type=text]', 'td', {autoWrap: true, debug: true, isGrid: true});
 
                 $(".widget").on('activeDescendantChange', 'li[role=option], td', function(e, data) {
                     console.log(e, this, data);

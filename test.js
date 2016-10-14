@@ -80,7 +80,7 @@ data.forEach(function(html) {
 
         beforeAll(function() {
             setupSuite(html);
-
+            $focusItem.focus();
             $focusItem.trigger('downArrowKeyDown');
             $focusItem.trigger('downArrowKeyDown');
         });
@@ -95,11 +95,12 @@ data.forEach(function(html) {
 
     });
 
+    /*
     describe("when up arrow is pressed twice", function() {
 
         beforeAll(function() {
             setupSuite(html);
-
+            $focusItem.focus();
             $focusItem.trigger('upArrowKeyDown');
             $focusItem.trigger('upArrowKeyDown');
         });
@@ -113,6 +114,7 @@ data.forEach(function(html) {
         });
 
     });
+    */
 
     describe("when last item is active and down arrow is pressed", function() {
 
@@ -125,16 +127,15 @@ data.forEach(function(html) {
             // manipulate plugin so last item is active
             $focusItem.trigger('downArrowKeyDown');
             $focusItem.trigger('downArrowKeyDown');
-
             $focusItem.trigger('downArrowKeyDown');
         });
 
-        it("activedescendant id should loop back to first item", function() {
-            expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.first().prop('id'));
+        it("activedescendant id should not wrap back to first item", function() {
+            expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.last().prop('id'));
         });
 
-        it("aria-selected=true should loop back to first item", function() {
-            expect($descendantItems.first().attr('aria-selected')).toBe('true');
+        it("aria-selected=true should not wrap back to first item", function() {
+            expect($descendantItems.last().attr('aria-selected')).toBe('true');
         });
 
         it("should have toIndex:0 as event data", function() {
@@ -154,12 +155,12 @@ data.forEach(function(html) {
             $focusItem.trigger('upArrowKeyDown');
         });
 
-        it("activedescendant id should loop around to last item", function() {
-            expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.last().prop('id'));
+        it("activedescendant id should not wrap around to last item", function() {
+            expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.first().prop('id'));
         });
 
-        it("aria-selected=true should loop around to last item", function() {
-            expect($descendantItems.last().attr('aria-selected')).toBe('true');
+        it("aria-selected=true should not wrap around to last item", function() {
+            expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
 
     });

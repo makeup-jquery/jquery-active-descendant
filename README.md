@@ -22,13 +22,14 @@ This plugin is still in an experimental state, until it reaches v1.0.0 you must 
 ## Signature
 
 ```js
-$(input).activeDescendant(focusableItemSelector, descendantItemsSelector, options);
+$(widgetSelector).activeDescendant(focusableItemSelector, descendantItemsSelector, options);
 ```
 
 ## Params
 
 * `focusableItemSelector` - selector for focusable item in relation to widget
 * `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
+* `options.autoWrap`: reaching end of collection will wrap back to beginning, and vice versa (default: false)
 * `options.axis` - 'x', 'y' or 'both' (default: 'both')
 * `options.isGrid` - set to true to use two-dimensional navigation (default: false)
 
@@ -132,21 +133,14 @@ $('.widget').activeDescendant('input', 'td', {isGrid: true});
 
 ## Development
 
-Run `npm start` or `npm run tdd` for local development. All tests are located in `test.js`.
+Useful NPM task runners:
 
-Execute `npm run` to view all available CLI scripts:
-
-* `npm start` runs local server and re-syncs browser on any source file change
+* `npm start` for local browser-sync development.
 * `npm test` runs tests & generates reports (see reports section below)
 * `npm run tdd` test driven development: watches code and re-tests after any change
-* `npm run lint` lints code for syntax and style
-* `npm run fix` attempts to auto fix style errors
-* `npm run build` minifies code and generates jsdocs
+* `npm run build` cleans, lints, tests and minifies
 
-The following hooks exist, and do not need to be invoked manually:
-
-* `npm prepublish` cleans, lints, tests and builds on every `npm publish` command
-* `pre-commit` cleans, lints, tests and builds on every `git commit` command
+Execute `npm run` to view all available CLI scripts.
 
 ## CI Build
 

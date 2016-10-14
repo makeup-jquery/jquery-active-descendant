@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.13.1
+* @version 0.14.0
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -22,6 +22,7 @@
     */
     $.fn.activeDescendant = function activeDescendant(focusItemSelector, descendantItemsSelector, options) {
         options = $.extend({
+            autoWrap: false,
             axis: 'both',
             isGrid: false,
             autoReset: true,
