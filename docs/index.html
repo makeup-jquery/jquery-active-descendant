@@ -126,7 +126,7 @@
 
                 $('button#append-linear-items').on('click', function() {
                     $('[role=listbox]').append('<li role="option">Option n</li>');
-                    $(".widget--linear").trigger('activeDescendantItemsChange');
+                    $(".widget--linear, .widget--linear-wrap").trigger('activeDescendantItemsChange');
                 });
 
                 $('button#append-grid-items').on('click', function() {
@@ -137,7 +137,7 @@
                     }
 
                     $("tbody").append($tr);
-                    $(".widget--grid").trigger('activeDescendantItemsChange');
+                    $(".widget--grid, .widget--grid-wrap").trigger('activeDescendantItemsChange');
                 });
             });
         </script>
