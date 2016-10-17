@@ -1,11 +1,12 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.14.0
+* @version 0.14.1
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
 * @requires jquery-next-id
+* @requires jquery-prevent-scroll-keys
 */
 (function($, window, document, undefined) {
     var pluginName = 'jquery-active-descendant';
@@ -27,7 +28,8 @@
             isGrid: false,
             autoReset: true,
             autoInit: false,
-            debug: false
+            debug: false,
+            disableHomeAndEndKeys: false
         }, options);
 
         return this.each(function onEach() {
@@ -111,6 +113,9 @@
 
                 // listen to linearNavigationChange & gridNavigationChange events
                 $widget.on('linearNavigationInit gridNavigationInit linearNavigationChange gridNavigationChange', onNavigationChange);
+
+                // use plugin to prevent arrow keys from scrolling page
+                $widget.preventScrollKeys(focusItemSelector);
 
                 // initialise state on first pass
                 updateActiveDescendantItems();

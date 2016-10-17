@@ -29,8 +29,11 @@ $(widgetSelector).activeDescendant(focusableItemSelector, descendantItemsSelecto
 
 * `focusableItemSelector` - selector for focusable item in relation to widget
 * `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
+* `options.autoInit`: set initial activedescendant state when plugin executes (default: false)
+* `options.autoReset`: reset activedescendant state when focus exits widget (default: true)
 * `options.autoWrap`: reaching end of collection will wrap back to beginning, and vice versa (default: false)
 * `options.axis` - 'x', 'y' or 'both' (default: 'both')
+* `options.disableHomeAndEndKeys`: disable HOME and END key functionality (default: false)
 * `options.isGrid` - set to true to use two-dimensional navigation (default: false)
 
 ## Triggers
@@ -130,6 +133,7 @@ $('.widget').activeDescendant('input', 'td', {isGrid: true});
 * [jquery-grid-navigation](https://github.com/ianmcburnie/jquery-grid-navigation)
 * [jquery-linear-navigation](https://github.com/ianmcburnie/jquery-linear-navigation)
 * [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
+* [jquery-prevent-scroll-keys](https://github.com/ianmcburnie/jquery-prevent-scroll-keys)
 
 ## Development
 
