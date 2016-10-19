@@ -11,7 +11,7 @@ function setupSuite(html) {
     onActiveDescendantChange = jasmine.createSpy('onActiveDescendantChange');
 
     // execute plugin on widget
-    $widget.activeDescendant('[role=combobox]', '[role=option]');
+    $widget.activeDescendant('[role=combobox]', '[role=listbox]', '[role=option]');
 
     // setup event handlers on widget
     $widget.on('activeDescendantChange', '[role=option]', onActiveDescendantChange);

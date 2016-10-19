@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.14.1
+* @version 0.15.0
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -21,7 +21,7 @@
     * @listens activeDescendantItemsChange - for changes to descendant items
     * @return {jQuery} chainable jQuery class
     */
-    $.fn.activeDescendant = function activeDescendant(focusItemSelector, descendantItemsSelector, options) {
+    $.fn.activeDescendant = function activeDescendant(focusItemSelector, ownedItemSelector, descendantItemsSelector, options) {
         options = $.extend({
             autoWrap: false,
             axis: 'both',
@@ -43,13 +43,14 @@
                 // we keep a reference to the actual items that can be navigated
                 var $descendantItems;
 
-                // we keep a reference to the common ancestor of the items
-                var $descendantItemsContainer;
+                // we keep a reference to the element that is programmatically 'owned' by the focus item
+                var $ownedElement = $widget.find(ownedItemSelector);
 
-                // retrieve the common ancestor of descendant items (i.e. the container element)
-                var getDescendantItemsCommonAncestor = function() {
-                    return $descendantItems.first().parents().has($descendantItems.last()).first();
-                };
+                // ensure container has an id
+                $ownedElement.nextId();
+
+                // focus item must programatically 'own' the container of descendant items
+                $focusItem.attr('aria-owns', $ownedElement.prop('id'));
 
                 // all dom manipulation after keyboard input is done here
                 var update = function(currentActiveDescendant, newActiveDescendant, data) {
@@ -79,17 +80,6 @@
 
                     // ensure items have an id
                     $descendantItems.nextId();
-
-                    // on first pass retrieve and store descendant items container reference
-                    if ($descendantItemsContainer === undefined && $descendantItems.length > 0) {
-                        $descendantItemsContainer = getDescendantItemsCommonAncestor();
-
-                        // ensure container has an id
-                        $descendantItemsContainer.nextId();
-
-                        // focus item must programatically 'own' the container of descendant items
-                        $focusItem.attr('aria-owns', $descendantItemsContainer.prop('id'));
-                    }
 
                     // Use a navigation plugin. This plugin holds state.
                     if (options.isGrid === true) {

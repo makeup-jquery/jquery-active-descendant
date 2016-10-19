@@ -110,11 +110,11 @@
             $(function() {
                 var count = 14;
 
-                $(".widget--linear").activeDescendant('input[role=combobox]', 'li[role=option]', {debug: true, axis: 'y'});
-                $(".widget--linear-wrap").activeDescendant('input[role=combobox]', 'li[role=option]', {debug: true, autoWrap: true, axis: 'y'});
+                $(".widget--linear").activeDescendant('[role=combobox]', '[role=listbox]', '[role=option]', {debug: true, axis: 'y'});
+                $(".widget--linear-wrap").activeDescendant('[role=combobox]', '[role=listbox]', '[role=option]', {debug: true, autoWrap: true, axis: 'y'});
 
-                $(".widget--grid").activeDescendant('input[type=text]', 'td', {debug: true, isGrid: true});
-                $(".widget--grid-wrap").activeDescendant('input[type=text]', 'td', {autoWrap: true, debug: true, isGrid: true});
+                $(".widget--grid").activeDescendant('input[type=text]', 'table', 'td', {debug: true, isGrid: true});
+                $(".widget--grid-wrap").activeDescendant('input[type=text]', 'table', 'td', {autoWrap: true, debug: true, isGrid: true});
 
                 $(".widget").on('activeDescendantChange', 'li[role=option], td', function(e, data) {
                     console.log(e, this, data);

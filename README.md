@@ -22,12 +22,13 @@ This plugin is still in an experimental state, until it reaches v1.0.0 you must 
 ## Signature
 
 ```js
-$(widgetSelector).activeDescendant(focusableItemSelector, descendantItemsSelector, options);
+$(widgetSelector).activeDescendant(focusableItemSelector, ownedItemSelector, descendantItemsSelector, options);
 ```
 
 ## Params
 
 * `focusableItemSelector` - selector for focusable item in relation to widget
+* `ownedItemSelector` - selector for the item that is programmatically owned by the focusable item (i.e. 'aria-owns')
 * `descendantItemsSelector` - selector for pseudo-focusable descendant items in relation to widget
 * `options.autoInit`: set initial activedescendant state when plugin executes (default: false)
 * `options.autoReset`: reset activedescendant state when focus exits widget (default: true)
@@ -62,7 +63,7 @@ Input HTML:
 Execute plugin:
 
 ```js
-$('.widget').activeDescendant('[role=combobox]', '[role=option]', { axis: 'y'});
+$('.widget').activeDescendant('[role=combobox]', '[role=listbox]', '[role=option]', { axis: 'y'});
 ```
 
 Output HTML:
