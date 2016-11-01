@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.15.0
+* @version 0.15.1
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -96,10 +96,12 @@
                 $widget.on('activeDescendantItemsChange', updateActiveDescendantItems);
 
                 // remove active descendant attr and class when widget loses focus
-                $focusItem.on('blur', function() {
-                    $focusItem.removeAttr('aria-activedescendant');
-                    $widget.find('[aria-selected=true]').removeAttr('aria-selected');
-                });
+                if (options.autoReset === true) {
+                    $focusItem.on('blur', function() {
+                        $focusItem.removeAttr('aria-activedescendant');
+                        $widget.find('[aria-selected=true]').removeAttr('aria-selected');
+                    });
+                }
 
                 // listen to linearNavigationChange & gridNavigationChange events
                 $widget.on('linearNavigationInit gridNavigationInit linearNavigationChange gridNavigationChange', onNavigationChange);
