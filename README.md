@@ -41,9 +41,9 @@ $(widgetSelector).activeDescendant(focusableItemSelector, ownedItemSelector, des
 
 * `activeDescendantChange` - when active descendant has changed
 
-## Observes
+## Listens
 
-* `activeDescendantItemsChange` - when collection of active descendant items has been updated
+* `domChange` - when dom of ownedItem selector has changed. Must be triggered on ownedItemSelector.
 
 ## Example - One Dimensional
 
