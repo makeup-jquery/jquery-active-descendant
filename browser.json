@@ -4,7 +4,6 @@
         "jquery-grid-navigation",
         "jquery-linear-navigation",
         "jquery-next-id",
-        "jquery-prevent-scroll-keys",
         "jquery.activedescendant.js"
     ]
 }

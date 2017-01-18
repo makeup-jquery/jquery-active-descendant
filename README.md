@@ -134,7 +134,6 @@ $('.widget').activeDescendant('input', 'td', {isGrid: true});
 * [jquery-grid-navigation](https://github.com/ianmcburnie/jquery-grid-navigation)
 * [jquery-linear-navigation](https://github.com/ianmcburnie/jquery-linear-navigation)
 * [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
-* [jquery-prevent-scroll-keys](https://github.com/ianmcburnie/jquery-prevent-scroll-keys)
 
 ## Development
 

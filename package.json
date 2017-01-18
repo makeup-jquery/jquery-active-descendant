@@ -46,7 +46,6 @@
     "jquery-migrate": "^3",
     "jquery-linear-navigation": "~0.3",
     "jquery-next-id": "~0.1",
-    "jquery-prevent-scroll-keys": "~0.5",
     "jsdoc": "^3",
     "jsmin": "^1",
     "karma": "^1",
@@ -66,8 +65,7 @@
     "jquery": ">=1.11",
     "jquery-grid-navigation": "~0.1",
     "jquery-linear-navigation": "~0.3",
-    "jquery-next-id": "~0.1",
-    "jquery-prevent-scroll-keys": "~0.5"
+    "jquery-next-id": "~0.1"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
