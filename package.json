@@ -42,6 +42,8 @@
     "eslint-config-google": "~0.7",
     "jasmine-core": "^2",
     "jquery": ">=1.11",
+    "jquery-common-keydown": "~0.3",
+    "jquery-focus-exit": "~0.3",
     "jquery-grid-navigation": "~0.1",
     "jquery-migrate": "^3",
     "jquery-linear-navigation": "~0.3",
