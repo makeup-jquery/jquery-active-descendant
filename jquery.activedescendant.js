@@ -28,7 +28,9 @@
     * @listens gridNavigationItemsChange - for changes to grid navigation items
     * @return {jQuery} chainable jQuery class
     */
-    $.fn.activeDescendant = function activeDescendant(focusItemSelector, ownedItemSelector, descendantItemsSelector, options) {
+    $.fn.activeDescendant = function activeDescendant(
+        focusItemSelector, ownedItemSelector, descendantItemsSelector, options
+    ) {
         options = $.extend({
             activeIndex: 0,
             autoInit: false,
@@ -117,7 +119,10 @@
                 $widget.on('linearNavigationReset gridNavigationReset', onNavigationReset);
 
                 // listen to linearNavigationChange & gridNavigationChange events
-                $widget.on('linearNavigationInit gridNavigationInit linearNavigationChange gridNavigationChange', onNavigationChange);
+                $widget.on(
+                    'linearNavigationInit gridNavigationInit linearNavigationChange gridNavigationChange',
+                    onNavigationChange
+                );
 
                 // initialise descendant item state on first pass
                 updateActiveDescendantItems();
@@ -142,9 +147,10 @@
                 });
 
                 // store data on widget
-                $widget.data(pluginName, {installed: true});
+                $widget.data(pluginName, { installed: true });
             } else if (options.debug === true) {
-                console.log('info: {pluginName} is already installed on {element}'.replace('{pluginName}', pluginName).replace('{element}', this));
+                console.log('info: {pluginName} is already installed on {element}'.replace('{pluginName}', pluginName)
+                    .replace('{element}', this));
             }
         });
     };

@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 var data = [
     '<div class="combobox">'
         + '<input role="combobox">'

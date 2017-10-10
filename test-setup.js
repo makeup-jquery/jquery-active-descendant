@@ -1,3 +1,6 @@
+/* eslint no-unused-vars: 0 */
+/* eslint no-undef: 0 */
+
 // called by every test suite
 function setupSuite(html) {
     // setup dom

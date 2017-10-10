@@ -1,7 +1,7 @@
+/* eslint no-undef: 0 */
+
 data.forEach(function(html) {
-
     describe("when no arrow key has been pressed", function() {
-
         beforeAll(function() {
             setupSuite(html);
         });
@@ -21,11 +21,9 @@ data.forEach(function(html) {
         it("should not trigger activeDescendantChange event", function() {
             expect(onActiveDescendantChange).not.toHaveBeenCalled();
         });
-
     });
 
     describe("when arrow down is pressed once", function() {
-
         beforeAll(function() {
             setupSuite(html);
 
@@ -47,11 +45,9 @@ data.forEach(function(html) {
         it("first item should have aria-selected=true", function() {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
-
     });
 
     describe("when up arrow is pressed once", function() {
-
         beforeAll(function() {
             setupSuite(html);
 
@@ -73,11 +69,9 @@ data.forEach(function(html) {
         it("first item should have aria-selected=true", function() {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
-
     });
 
     describe("when down arrow is pressed twice", function() {
-
         beforeAll(function() {
             setupSuite(html);
             $focusItem.focus();
@@ -92,12 +86,10 @@ data.forEach(function(html) {
         it("should contain only one element with aria-selected=true", function() {
             expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
         });
-
     });
 
     /*
     describe("when up arrow is pressed twice", function() {
-
         beforeAll(function() {
             setupSuite(html);
             $focusItem.focus();
@@ -117,7 +109,6 @@ data.forEach(function(html) {
     */
 
     describe("when last item is active and down arrow is pressed", function() {
-
         beforeAll(function() {
             setupSuite(html);
 
@@ -141,11 +132,9 @@ data.forEach(function(html) {
         it("should have toIndex:0 as event data", function() {
             expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
-
     });
 
     describe("when first item is active and up arrow is pressed once", function() {
-
         beforeAll(function() {
             setupSuite(html);
 
@@ -162,11 +151,9 @@ data.forEach(function(html) {
         it("aria-selected=true should not wrap around to last item", function() {
             expect($descendantItems.first().attr('aria-selected')).toBe('true');
         });
-
     });
 
     describe("when widget loses focus after interaction", function() {
-
         beforeAll(function() {
             setupSuite(html);
 
@@ -178,7 +165,5 @@ data.forEach(function(html) {
         it("should contain zero elements with aria-selected=true", function() {
             expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(0);
         });
-
     });
-
 });
