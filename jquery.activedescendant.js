@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.16.2
+* @version 0.17.0
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -22,8 +22,8 @@
     * @param {boolean} [options.autoWrap] - keyboard focus wraps from last to first & vice versa (default: false)
     * @param {string} [options.axis] - set arrow key axis to x, y or both (default: both)
     * @param {boolean} [options.disableHomeAndEndKeys] - disable HOME and END key functionality (default: false)
-    * @param {boolean} [options.isGrid] -  set to true to use two-dimensional navigation (default: false)
-    * @param {boolean} [options.useAriaSelected] -  set to true to use aria-selected on descendant items (default: true)
+    * @param {boolean} [options.isGrid] - set to true to use two-dimensional navigation (default: false)
+    * @param {boolean} [options.useAriaSelected] - set to true to use aria-selected on descendant items (default: false)
     * @fires activeDescendantChange - when active descendant changes
     * @fires gridNavigationBoundary - when a grid boundary is hit
     * @listens linearNavigationItemsChange - for changes to linear navigation items
@@ -42,7 +42,7 @@
             debug: false,
             disableHomeAndEndKeys: false,
             isGrid: false,
-            useAriaSelected: true
+            useAriaSelected: false
         }, options);
 
         return this.each(function onEachActiveDescendant() {

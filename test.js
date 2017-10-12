@@ -38,12 +38,12 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
 
-        it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
+        it("should contain only one element with active-descendant class", function() {
+            expect($descendantItemsContainer.find('.active-descendant').length).toBe(1);
         });
 
-        it("first item should have aria-selected=true", function() {
-            expect($descendantItems.first().attr('aria-selected')).toBe('true');
+        it("first item should have active-descendant class", function() {
+            expect($descendantItems.first().hasClass('active-descendant')).toBe(true);
         });
     });
 
@@ -62,12 +62,12 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange.calls.argsFor(0)[1].toIndex).toBe(0);
         });
 
-        it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
+        it("should contain only one element with active-descendant class", function() {
+            expect($descendantItemsContainer.find('.active-descendant').length).toBe(1);
         });
 
-        it("first item should have aria-selected=true", function() {
-            expect($descendantItems.first().attr('aria-selected')).toBe('true');
+        it("first item should have active-descendant class", function() {
+            expect($descendantItems.first().hasClass('active-descendant')).toBe(true);
         });
     });
 
@@ -83,8 +83,8 @@ data.forEach(function(html) {
             expect(onActiveDescendantChange).toHaveBeenCalledTimes(2);
         });
 
-        it("should contain only one element with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(1);
+        it("should contain only one element with active-descendant class", function() {
+            expect($descendantItemsContainer.find('.active-descendant').length).toBe(1);
         });
     });
 
@@ -125,8 +125,8 @@ data.forEach(function(html) {
             expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.last().prop('id'));
         });
 
-        it("aria-selected=true should not wrap back to first item", function() {
-            expect($descendantItems.last().attr('aria-selected')).toBe('true');
+        it("active-descendant should not wrap back to first item", function() {
+            expect($descendantItems.last().hasClass('active-descendant')).toBe(true);
         });
 
         it("should have toIndex:0 as event data", function() {
@@ -148,8 +148,8 @@ data.forEach(function(html) {
             expect($focusItem.attr('aria-activedescendant')).toBe($descendantItems.first().prop('id'));
         });
 
-        it("aria-selected=true should not wrap around to last item", function() {
-            expect($descendantItems.first().attr('aria-selected')).toBe('true');
+        it("active-descendant class should not wrap around to last item", function() {
+            expect($descendantItems.first().hasClass('active-descendant')).toBe(true);
         });
     });
 
@@ -162,8 +162,8 @@ data.forEach(function(html) {
             $('body').attr('tabindex', '-1').focus();
         });
 
-        it("should contain zero elements with aria-selected=true", function() {
-            expect($descendantItemsContainer.find('[aria-selected=true]').length).toBe(0);
+        it("should contain zero elements with active-descendant class", function() {
+            expect($descendantItemsContainer.find('.active-descendant').length).toBe(0);
         });
     });
 });

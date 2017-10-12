@@ -36,7 +36,7 @@ $(widgetSelector).activeDescendant(focusableItemSelector, ownedItemSelector, des
 * `options.axis` - 'x', 'y' or 'both' (default: 'both')
 * `options.disableHomeAndEndKeys`: disable HOME and END key functionality (default: false)
 * `options.isGrid` - set to true to use two-dimensional navigation (default: false)
-* `options.useAriaSelected` - set to true to use aria-selected state on descendant items (historically required by Safari + Voiceover) (default: true)
+* `options.useAriaSelected` - set to true to use aria-selected state on descendant items (historically required by Safari + Voiceover) (default: false)
 
 ## Triggers
 
@@ -86,7 +86,7 @@ First down arrow key produces:
 <div class="widget">
     <input role="combobox" aria-owns="nid-3" aria-activedescendant="nid-0" />
     <ul role="listbox" id="nid-3">
-        <li role="option" id="nid-0" aria-selected="true">A</li>
+        <li role="option" id="nid-0" class="active-descendant">A</li>
         <li role="option" id="nid-1">B</li>
         <li role="option" id="nid-2">C</li>
     </ul>
@@ -100,7 +100,7 @@ Next down arrow key produces:
     <input role="combobox" aria-owns="nid-3" aria-activedescendant="nid-1" />
     <ul role="listbox" id="nid-3">
         <li role="option" id="nid-0">A</li>
-        <li role="option" id="nid-1" aria-selected="true">B</li>
+        <li role="option" id="nid-1" class="active-descendant">B</li>
         <li role="option" id="nid-2">C</li>
     </ul>
 </div>
