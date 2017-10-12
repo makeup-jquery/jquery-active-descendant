@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.16.1
+* @version 0.16.2
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation
@@ -22,6 +22,8 @@
     * @param {boolean} [options.autoWrap] - keyboard focus wraps from last to first & vice versa (default: false)
     * @param {string} [options.axis] - set arrow key axis to x, y or both (default: both)
     * @param {boolean} [options.disableHomeAndEndKeys] - disable HOME and END key functionality (default: false)
+    * @param {boolean} [options.isGrid] -  set to true to use two-dimensional navigation (default: false)
+    * @param {boolean} [options.useAriaSelected] -  set to true to use aria-selected on descendant items (default: true)
     * @fires activeDescendantChange - when active descendant changes
     * @fires gridNavigationBoundary - when a grid boundary is hit
     * @listens linearNavigationItemsChange - for changes to linear navigation items
@@ -39,7 +41,8 @@
             axis: 'both',
             debug: false,
             disableHomeAndEndKeys: false,
-            isGrid: false
+            isGrid: false,
+            useAriaSelected: true
         }, options);
 
         return this.each(function onEachActiveDescendant() {
@@ -65,9 +68,17 @@
                         // update the aria-activedescendant pointer
                         $focusItem.attr('aria-activedescendant', $newActiveDescendant.prop('id'));
 
-                        // update the aria-selected state (needed for voiceover)
-                        $currentActiveDescendant.removeAttr('aria-selected');
-                        $newActiveDescendant.attr('aria-selected', 'true');
+                        // historically, safari + voiceover needed the aria-selected state
+                        // but in recent versions there is a syncronization issue
+                        // see https://github.com/ianmcburnie/jquery-active-descendant/issues/4
+
+                        if (options.useAriaSelected === true) {
+                            $currentActiveDescendant.removeAttr('aria-selected');
+                            $newActiveDescendant.attr('aria-selected', 'true');
+                        } else {
+                            $currentActiveDescendant.removeClass('active-descendant');
+                            $newActiveDescendant.addClass('active-descendant');
+                        }
 
                         // inform observers of change
                         $newActiveDescendant.trigger('activeDescendantChange', {
@@ -112,7 +123,11 @@
                 if (options.autoReset === true) {
                     $focusItem.on('blur', function onFocusItem() {
                         $focusItem.removeAttr('aria-activedescendant');
-                        $widget.find('[aria-selected=true]').removeAttr('aria-selected');
+                        if (options.useAriaSelected === true) {
+                            $widget.find('[aria-selected=true]').removeAttr('aria-selected');
+                        } else {
+                            $widget.find('.active-descendant').removeClass('active-descendant');
+                        }
                     });
                 }
 

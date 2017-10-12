@@ -15,11 +15,12 @@
             .examples {
                 padding: 10px;
             }
-            [role=listbox] {
+            .widget [role=listbox] {
                 list-style-type: none;
                 padding: 0;
             }
-            [aria-selected=true] {
+            .widget [aria-selected=true],
+            .widget .active-descendant{
                 background-color: black;
                 color: white;
             }
@@ -60,11 +61,11 @@
             <div class="examples">
                 <h3>Linear Widget 1</h3>
                 <div class="widget widget--linear">
-                    <input type="text" role="combobox">
+                    <input role="combobox" type="text">
                     <ul role="listbox">
-                        <li role="option">Option 1</li>
-                        <li role="option">Option 2</li>
-                        <li role="option">Option 3</li>
+                        <li role="option">Option A</li>
+                        <li role="option">Option B</li>
+                        <li role="option">Option C</li>
                     </ul>
                 </div>
             </div>

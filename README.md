@@ -36,6 +36,7 @@ $(widgetSelector).activeDescendant(focusableItemSelector, ownedItemSelector, des
 * `options.axis` - 'x', 'y' or 'both' (default: 'both')
 * `options.disableHomeAndEndKeys`: disable HOME and END key functionality (default: false)
 * `options.isGrid` - set to true to use two-dimensional navigation (default: false)
+* `options.useAriaSelected` - set to true to use aria-selected state on descendant items (historically required by Safari + Voiceover) (default: true)
 
 ## Triggers
 
