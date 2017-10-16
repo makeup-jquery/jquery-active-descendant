@@ -1,7 +1,7 @@
 /**
 * @file jQuery collection plugin that implements one-dimensional aria-activedescendant keyboard navigation
 * @author Ian McBurnie <ianmcburnie@hotmail.com>
-* @version 0.17.0
+* @version 1.0.0
 * @requires jquery
 * @requires jquery-linear-navigation
 * @requires jquery-grid-navigation

@@ -15,10 +15,6 @@ jQuery collection plugin that implements one or two dimensional aria-activedesce
 npm install jquery-active-descendant
 ```
 
-## Experimental
-
-This plugin is still in an experimental state, until it reaches v1.0.0 you must consider all minor releases as breaking changes. Patch releases may introduce new features, but will be backwards compatible.
-
 ## Signature
 
 ```js
