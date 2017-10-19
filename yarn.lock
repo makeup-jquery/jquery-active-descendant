@@ -2416,25 +2416,25 @@ jasmine-core@^2:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.8.0.tgz#bcc979ae1f9fd05701e45e52e65d3a5d63f1a24e"
 
-jquery-common-keydown@~0.3:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/jquery-common-keydown/-/jquery-common-keydown-0.3.1.tgz#10d013a6bf331033cd4668aec97a4b948142dd90"
+jquery-common-keydown@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jquery-common-keydown/-/jquery-common-keydown-1.0.1.tgz#4b6d99dae5c20ffa9bc937b1652fb4620ca9f1f6"
 
-jquery-focus-exit@~0.3:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/jquery-focus-exit/-/jquery-focus-exit-0.3.1.tgz#a17d04d1a2c90b56168714ce6794accaf357e7a1"
+jquery-focus-exit@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jquery-focus-exit/-/jquery-focus-exit-1.0.1.tgz#76b5686bb464d07f9be45ef3888216305ced8046"
 
-jquery-grid-navigation@~0.1:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/jquery-grid-navigation/-/jquery-grid-navigation-0.1.0.tgz#e877f67364befb3ef09284f54deb11f3b9718387"
+jquery-grid-navigation@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jquery-grid-navigation/-/jquery-grid-navigation-1.0.1.tgz#210b971ef14f90c61a9309b89c2cb9e92747bc95"
 
-jquery-linear-navigation@~0.3:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/jquery-linear-navigation/-/jquery-linear-navigation-0.3.0.tgz#27f733647cf4206c35a47126d0172e24faa5a850"
+jquery-linear-navigation@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jquery-linear-navigation/-/jquery-linear-navigation-1.0.1.tgz#3c0626bf09cbe543eb26c8b57c30010cebc0cadc"
 
-jquery-next-id@~0.1:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/jquery-next-id/-/jquery-next-id-0.1.0.tgz#9a96b8ab2b8226454cdc69bcdfc3db87ceffa3c1"
+jquery-next-id@^1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/jquery-next-id/-/jquery-next-id-1.0.1.tgz#26541a06be9cb44186470716bc2ab7870cfd7936"
 
 jquery@>=1.11:
   version "3.2.1"
@@ -3244,8 +3244,8 @@ osenv@^0.1.4:
     os-tmpdir "^1.0.0"
 
 parallelshell@^3:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/parallelshell/-/parallelshell-3.0.1.tgz#0587ce1535350543916d8f3d329fbfa4a0355f22"
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/parallelshell/-/parallelshell-3.0.2.tgz#fffc55aaa145bdd44b5381cf7fd5e521fc21aa7b"
 
 parse-glob@^3.0.4:
   version "3.0.4"

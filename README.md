@@ -1,10 +1,10 @@
 # jquery-active-descendant
 
 <p>
-    <a href="https://travis-ci.org/ianmcburnie/jquery-active-descendant"><img src="https://api.travis-ci.org/ianmcburnie/jquery-active-descendant.svg?branch=master" alt="Build Status" /></a>
-    <a href='https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master'><img src='https://coveralls.io/repos/ianmcburnie/jquery-active-descendant/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
-    <a href="https://david-dm.org/ianmcburnie/jquery-active-descendant"><img src="https://david-dm.org/ianmcburnie/jquery-active-descendant.svg" alt="Dependency status" /></a>
-    <a href="https://david-dm.org/ianmcburnie/jquery-active-descendant#info=devDependencies"><img src="https://david-dm.org/ianmcburnie/jquery-active-descendant/dev-status.svg" alt="devDependency status" /></a>
+    <a href="https://travis-ci.org/makeup-jquery/jquery-active-descendant"><img src="https://api.travis-ci.org/makeup-jquery/jquery-active-descendant.svg?branch=master" alt="Build Status" /></a>
+    <a href='https://coveralls.io/github/makeup-jquery/jquery-active-descendant?branch=master'><img src='https://coveralls.io/repos/makeup-jquery/jquery-active-descendant/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
+    <a href="https://david-dm.org/makeup-jquery/jquery-active-descendant"><img src="https://david-dm.org/makeup-jquery/jquery-active-descendant.svg" alt="Dependency status" /></a>
+    <a href="https://david-dm.org/makeup-jquery/jquery-active-descendant#info=devDependencies"><img src="https://david-dm.org/makeup-jquery/jquery-active-descendant/dev-status.svg" alt="devDependency status" /></a>
 </p>
 
 jQuery collection plugin that implements one or two dimensional aria-activedescendant keyboard navigation. A common scenario for aria-activedescendant is a combobox input (with or without autocomplete behaviour) or date picker grid.
@@ -128,9 +128,9 @@ $('.widget').activeDescendant('input', 'td', {isGrid: true});
 ## Dependencies
 
 * [jquery](https://jquery.com/)
-* [jquery-grid-navigation](https://github.com/ianmcburnie/jquery-grid-navigation)
-* [jquery-linear-navigation](https://github.com/ianmcburnie/jquery-linear-navigation)
-* [jquery-next-id](https://github.com/ianmcburnie/jquery-next-id)
+* [jquery-grid-navigation](https://github.com/makeup-jquery/jquery-grid-navigation)
+* [jquery-linear-navigation](https://github.com/makeup-jquery/jquery-linear-navigation)
+* [jquery-next-id](https://github.com/makeup-jquery/jquery-next-id)
 
 ## Development
 
@@ -145,11 +145,11 @@ Execute `npm run` to view all available CLI scripts.
 
 ## CI Build
 
-https://travis-ci.org/ianmcburnie/jquery-active-descendant
+https://travis-ci.org/makeup-jquery/jquery-active-descendant
 
 ## Code Coverage
 
-https://coveralls.io/github/ianmcburnie/jquery-active-descendant?branch=master
+https://coveralls.io/github/makeup-jquery/jquery-active-descendant?branch=master
 
 ## Test Reports
 
